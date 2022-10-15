@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.productBlock {
+  width: 100%;
+  height: 100vh;
+  border: solid black 1px;
+}
+
+.MarketName {
+  background-color: orange;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.Products {
+  border: solid black 1px;
+}
+
+.Product {
+  border: solid black 1px;
+}
+
+.Product > span {
+  margin: 10px;
+}
+
