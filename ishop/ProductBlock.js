@@ -2,6 +2,20 @@ var ProductBlock = React.createClass({
 
     displayName: 'ProductBlock',
 
+    propTypes: {
+      title: React.PropTypes.string.isRequired,
+      products: React.PropTypes.array.isRequired,
+   
+      products:React.PropTypes.arrayOf(
+        React.PropTypes.shape({
+          product: React.PropTypes.string.isRequired,
+          price: React.PropTypes.number.isRequired,
+          amount: React.PropTypes.number.isRequired,
+          url: React.PropTypes.string.isRequired
+        })
+      )  
+    },
+
     render: function() {
 
       return React.DOM.div( {className:''},
