@@ -18,24 +18,24 @@ var ProductBlock = React.createClass({
 
     render: function() {
 
-      return React.DOM.div( {className:''},
-        React.DOM.p( {className:'title'}, this.props.title ),
-        React.DOM.table( {},
-          React.DOM.thead( {}, 
-          React.DOM.tr( {},
-              React.DOM.th( {}, 'Название продукта' ),
-              React.DOM.th( {}, 'Стоимость (руб.)' ),
-              React.DOM.th( {}, 'Количество на складе (шт.)' ),
-              React.DOM.th( {}, 'Изображение' ),
+      return React.DOM.div( {className:'ProductBlock'},
+        React.DOM.p( {className:'Title'}, this.props.title ),
+        React.DOM.table( null,
+          React.DOM.thead( null, 
+          React.DOM.tr( null,
+              React.DOM.th( null, 'Название продукта' ),
+              React.DOM.th( null, 'Стоимость (руб.)' ),
+              React.DOM.th( null, 'Количество на складе (шт.)' ),
+              React.DOM.th( null, 'Изображение' ),
             )
           ),
-          React.DOM.tbody( {}, this.props.products.map(el => 
-            React.DOM.tr({key:el.id},
-              React.DOM.td({}, el.product),
-              React.DOM.td({}, el.price),
-              React.DOM.td({}, el.amount),
-              React.DOM.td({},
-                React.DOM.img({className:'img', src:`${el.url}`}),
+          React.DOM.tbody( null, this.props.products.map(el => 
+            React.DOM.tr( {key:el.id},
+              React.DOM.td( null, el.product),
+              React.DOM.td( null, el.price),
+              React.DOM.td( null, el.amount),
+              React.DOM.td( null,
+                React.DOM.img( {className:'Img', src:`${el.url}`} ),
               )
             )
           ))

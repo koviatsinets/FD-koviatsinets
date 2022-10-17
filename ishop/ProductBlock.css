@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.title {
+.ProductBlock .Title {
   width: 50%;
   background-color: orange;
   height: 50px;
@@ -14,18 +14,18 @@
   margin: 0 auto;
 }
 
-table {
+.ProductBlock table {
   width: 50%;
   border-collapse: collapse;
   margin: 0 auto;
 }
 
-td, th {
+.ProductBlock td, .ProductBlock th {
   padding: 5px;
   border: 1px solid black;
   text-align: center;
 }
 
-.img {
+.ProductBlock .Img {
   height: 50px;
 }
