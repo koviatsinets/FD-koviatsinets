@@ -19,7 +19,7 @@ var ProductBlock = React.createClass({
     render: function() {
 
       return React.DOM.div( {className:'ProductBlock'},
-        React.DOM.p( {className:'Title'}, this.props.title ),
+        React.createElement( MarketTitle, {title: this.props.title} ),
         React.DOM.table( null,
           React.DOM.thead( null, 
           React.DOM.tr( null,
