@@ -30,14 +30,10 @@ var ProductBlock = React.createClass({
             )
           ),
           React.DOM.tbody( null, this.props.products.map(el => 
-            React.DOM.tr( {key:el.id},
-              React.DOM.td( null, el.product),
-              React.DOM.td( null, el.price),
-              React.DOM.td( null, el.amount),
-              React.DOM.td( null,
-                React.DOM.img( {className:'Img', src:`${el.url}`} ),
+            React.createElement( 
+              ProductItem,
+              {key: el.id, product: el.product, price: el.price, amount: el.amount, url: el.url}
               )
-            )
           ))
         )
       )
