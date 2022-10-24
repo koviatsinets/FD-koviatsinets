@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8" />
+  <title>Stihl</title>
+</head> 
+<body> 
+  <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="ProductBlock.js"></script>
+  <link rel="stylesheet" type="text/css" href="ProductBlock.css" />
+  <script src="MarketTitle.js"></script>
+  <link rel="stylesheet" type="text/css" href="MarketTitle.css" />
+  <script src="ProductItem.js"></script>
+  <link rel="stylesheet" type="text/css" href="ProductItem.css" />
+  
+
+  <script>
+
+    var marketName = 'Техника STIHL';
+
+    var arrProducts = [
+        {product: 'MS180', id: 1, price: 770, amount: 14, url: 'https://benzomir.by/upload/iblock/137/137694b07992654eb3fde98f16fbc75a.jpg'},
+        {product: 'FS55', id: 2, price: 910, amount: 17, url: 'https://benzomir.by/upload/iblock/8e9/8e91d1b927baad631428219685ada407.jpg'},
+        {product: 'RMI 422 P', id: 3, price: 4790, amount: 9, url: 'https://benzomir.by/upload/iblock/11c/11c22b2814ea0ff7486d5cc4b5c0097f.jpg'},
+        {product: 'RT 4097 SX', id: 4, price: 12350, amount: 6, url: 'https://benzomir.by/upload/iblock/86f/86f1f47791fd9d36f6d77d4287f75320.jpg'},
+        {product: 'TSA 230', id: 5, price: 1710, amount: 11, url: 'https://benzomir.by/upload/iblock/336/3369b2bcc9e3dc095390acc2f0a2f77b.jpg'},
+        {product: 'BT 45', id: 6, price: 1995, amount: 10, url: 'https://benzomir.by/upload/iblock/1cd/1cd7fa30305d27786615c4abde18def7.jpg'},
+        {product: 'RE 100', id: 7, price: 1015, amount: 8, url: 'https://benzomir.by/upload/iblock/4db/4db86010c59fb388e94fbf0c31c4287d.jpg'},
+        {product: 'SE 33', id: 8, price: 370, amount: 18, url: 'https://benzomir.by/upload/iblock/e44/e44f6e5e7ef3f9f81efb45a5d901a361.jpg'},
+        {product: 'KG 550', id: 9, price: 685, amount: 14, url: 'https://benzomir.by/upload/iblock/b3d/b3d7c57808e437eb8d08d8c86ba283f4.jpg'},
+        {product: 'BGE 71', id: 10, price: 325, amount: 16, url: 'https://benzomir.by/upload/iblock/af3/af36888743184a762818e4f979ec52c3.jpg'},
+        {product: 'SG 51', id: 11, price: 60, amount: 12, url: 'https://benzomir.by/upload/iblock/76e/76ead33feab7f81a1ecaefa14c5874c3.jpg'},
+        {product: 'HLA56', id: 12, price: 1030, amount: 24, url: 'https://benzomir.by/upload/iblock/81c/81c0b036c4281d09510705102b50c826.jpg'},
+        {product: 'KM 55 R', id: 13, price: 665, amount: 10, url: 'https://benzomir.by/upload/iblock/aff/affea2dedf0f8525e584d02e88dfafb4.jpg'},
+        {product: 'MM 56', id: 14, price: 1575, amount: 13, url: 'https://benzomir.by/upload/iblock/9d7/9d7730b8cb769f67fb4d16d8cedea572.jpg'},
+        {product: 'MH 445 R', id: 15, price: 2340, amount: 20, url: 'https://benzomir.by/upload/iblock/052/052f21fc3e13b4134fb82b437a8e2e82.jpg'},
+    ]
+
+    ReactDOM.render(
+      React.createElement(ProductBlock,
+      {title: marketName, products: arrProducts}),
+      document.getElementById('container'),
+    );
+
+  </script>
+
+</body> 
+</html>

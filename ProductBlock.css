@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.ProductBlock .Title {
+  width: 50%;
+  background-color: orange;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 0 auto;
+}
+
+.ProductBlock table {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.ProductBlock td, .ProductBlock th {
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.ProductBlock .Img {
+  height: 50px;
+}
