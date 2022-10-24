@@ -11,43 +11,40 @@ var FilterBlock = React.createClass({
             wordsList: this.props.words,
             inputValue: '',
             isChecked: false,
-            resultWordsList: (this.props.words.join('\n')),
+            resultWordsList: this.props.words,
          };
       },
 
-    settingState: function(EO) {
-        switch(EO.target.type) {
-            case 'checkbox':
-                this.setState( {isChecked: !(this.state.isChecked)}, this.check );
-                break;
-            case 'text':
-                this.setState( {inputValue: EO.target.value}, this.check );
-                break;
-            case 'button':
-                this.setState( {isChecked: false, inputValue: ''}, this.check );
-                break;
-          };
+    settingStateCheckbox: function() {
+        this.setState( {isChecked: !(this.state.isChecked)}, this.check );
+    },
+
+    settingStateText: function(EO) {
+        this.setState( {inputValue: EO.target.value}, this.check );
+    },
+
+    settingStateButton: function() {
+        this.setState( {isChecked: false, inputValue: ''}, this.check );
     },
 
     check: function() {
-        let result = this.state.wordsList.slice(0, this.state.wordsList.length);
+        let result = this.state.wordsList.slice();
         if (this.state.isChecked === true) {
             result = result.sort();
-        }
-        if (this.state.isChecked === false) {
+        } else {
             result = this.state.wordsList;
         }
-        result = result.filter(el=>el.includes(this.state.inputValue)).join('\n');
+        result = result.filter(el=>el.includes(this.state.inputValue));
         this.setState( {resultWordsList: result} );
     },
 
     render: function() {
 
         return React.DOM.div( {className:'FilterBlock'},
-            React.DOM.input({type: 'checkbox', checked: this.state.isChecked, onChange: this.settingState}),
-            React.DOM.input({type: 'text', value: this.state.inputValue, onChange: this.settingState}),
-            React.DOM.input({type: 'button', value: 'сброс', onClick: this.settingState}),
-            React.DOM.div({className:'Field'}, this.state.resultWordsList),
+            React.DOM.input({type: 'checkbox', checked: this.state.isChecked, onChange: this.settingStateCheckbox}),
+            React.DOM.input({type: 'text', value: this.state.inputValue, onChange: this.settingStateText}),
+            React.DOM.input({type: 'button', value: 'сброс', onClick: this.settingStateButton}),
+            React.DOM.div({className:'Field'}, this.state.resultWordsList.join('\n')),
         )
     }
 })
