@@ -1,0 +1,7 @@
+.ProductItem .Img {
+    height: 50px;
+  }
+
+.ProductItem .Button {
+    cursor: pointer;
+  }

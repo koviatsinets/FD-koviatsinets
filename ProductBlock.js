@@ -19,7 +19,7 @@ var ProductBlock = React.createClass({
     render: function() {
 
       return React.DOM.div( {className:'ProductBlock'},
-        React.createElement( MarketTitle, {title: this.props.title} ),
+        React.DOM.div( {className:'MarketTitle'}, this.props.title ),
         React.DOM.table( null,
           React.DOM.thead( null, 
           React.DOM.tr( null,
@@ -27,6 +27,7 @@ var ProductBlock = React.createClass({
               React.DOM.th( null, 'Стоимость (руб.)' ),
               React.DOM.th( null, 'Количество на складе (шт.)' ),
               React.DOM.th( null, 'Изображение' ),
+              React.DOM.th( null, 'Удалить элемент' ),
             )
           ),
           React.DOM.tbody( null, this.props.products.map(el => 

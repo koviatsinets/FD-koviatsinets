@@ -11,12 +11,15 @@ var ProductItem = React.createClass({
     
     render: function() {
 
-        return React.DOM.tr( null,
+        return React.DOM.tr( {className:'ProductItem'},
             React.DOM.td( null, this.props.product),
             React.DOM.td( null, this.props.price),
             React.DOM.td( null, this.props.amount),
             React.DOM.td( null,
               React.DOM.img( {className:'Img', src:`${this.props.url}`} ),
+            ),
+            React.DOM.td( null,
+              React.DOM.button( {className:'Button'}, 'Удалить' ),
             )
           )
     }
