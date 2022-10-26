@@ -24,7 +24,8 @@ var ProductBlock = React.createClass({
     },
 
     deleteItem: function(EO) {
-      EO.stopPropagation();
+      EO.stopPropagation(); // чтобы не было конфликта с markItem()
+      this.confirm();
       var resultArr = this.state.stateArr.filter(el => (el.id !== +EO.target.dataset.button));
       this.setState( {stateArr: resultArr} );
     },
@@ -35,6 +36,10 @@ var ProductBlock = React.createClass({
         return el;
       });
       this.setState( {stateArr: resultArr} );
+    },
+
+    confirm: function() {
+      alert('Данный товар будет удален')
     },
 
     render: function() {
