@@ -24,12 +24,21 @@ var ProductBlock = React.createClass({
     },
 
     deleteItem: function(EO) {
-      var resultArr = this.state.stateArr.filter(el => (el.id !== +EO.target.dataset.num));
+      EO.stopPropagation();
+      var resultArr = this.state.stateArr.filter(el => (el.id !== +EO.target.dataset.button));
+      this.setState( {stateArr: resultArr} );
+    },
+
+    markItem: function(EO) {
+      var resultArr = this.state.stateArr.map(el => {
+        el.checked = (el.id === +EO.target.dataset.item)? true : false;
+        return el;
+      });
       this.setState( {stateArr: resultArr} );
     },
 
     render: function() {
-   
+
       return React.DOM.div( {className:'ProductBlock'},
         React.DOM.div( {className:'MarketTitle'}, this.props.title ),
         React.DOM.table( null,
@@ -44,8 +53,8 @@ var ProductBlock = React.createClass({
           ),
           React.DOM.tbody( null, this.state.stateArr.map(el=> 
             React.createElement( ProductItem, { key: el.id, id: el.id, product: el.product, 
-                price: el.price, amount: el.amount, url: el.url, 
-                cbDeleteItem: this.deleteItem}
+                price: el.price, amount: el.amount, url: el.url, checked: el.checked, 
+                cbDeleteItem: this.deleteItem, cbMarkItem: this.markItem}
               )
           ))
         )
