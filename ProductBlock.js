@@ -11,13 +11,25 @@ var ProductBlock = React.createClass({
           product: React.PropTypes.string.isRequired,
           price: React.PropTypes.number.isRequired,
           amount: React.PropTypes.number.isRequired,
-          url: React.PropTypes.string.isRequired
+          url: React.PropTypes.string.isRequired,
+          id: React.PropTypes.number.isRequired,
         })
       )  
     },
 
-    render: function() {
+    getInitialState: function() {
+      return { 
+          stateArr: this.props.products
+       };
+    },
 
+    deleteItem: function(EO) {
+      var resultArr = this.state.stateArr.filter(el => (el.id !== +EO.target.dataset.num));
+      this.setState( {stateArr: resultArr} );
+    },
+
+    render: function() {
+   
       return React.DOM.div( {className:'ProductBlock'},
         React.DOM.div( {className:'MarketTitle'}, this.props.title ),
         React.DOM.table( null,
@@ -30,10 +42,10 @@ var ProductBlock = React.createClass({
               React.DOM.th( null, 'Удалить элемент' ),
             )
           ),
-          React.DOM.tbody( null, this.props.products.map(el => 
-            React.createElement( 
-              ProductItem,
-              {key: el.id, product: el.product, price: el.price, amount: el.amount, url: el.url}
+          React.DOM.tbody( null, this.state.stateArr.map(el=> 
+            React.createElement( ProductItem, { key: el.id, id: el.id, product: el.product, 
+                price: el.price, amount: el.amount, url: el.url, 
+                cbDeleteItem: this.deleteItem}
               )
           ))
         )

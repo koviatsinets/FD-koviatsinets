@@ -8,9 +8,9 @@ var ProductItem = React.createClass({
         amount: React.PropTypes.number.isRequired,
         url: React.PropTypes.string.isRequired
     },
-    
-    render: function() {
 
+    render: function() {
+      
         return React.DOM.tr( {className:'ProductItem'},
             React.DOM.td( null, this.props.product),
             React.DOM.td( null, this.props.price),
@@ -19,7 +19,8 @@ var ProductItem = React.createClass({
               React.DOM.img( {className:'Img', src:`${this.props.url}`} ),
             ),
             React.DOM.td( null,
-              React.DOM.button( {className:'Button'}, 'Удалить' ),
+              React.DOM.button( {className:'Button', 'data-num': this.props.id, 
+              onClick: this.props.cbDeleteItem}, 'Удалить' ),
             )
           )
     }
