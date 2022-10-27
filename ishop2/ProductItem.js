@@ -6,11 +6,15 @@ var ProductItem = React.createClass({
         product: React.PropTypes.string.isRequired,
         price: React.PropTypes.number.isRequired,
         amount: React.PropTypes.number.isRequired,
-        url: React.PropTypes.string.isRequired
+        url: React.PropTypes.string.isRequired,
+        checked: React.PropTypes.bool.isRequired,
+        cbDeleteItem: React.PropTypes.func.isRequired,
+        cbMarkItem: React.PropTypes.func.isRequired,
+        id: React.PropTypes.number.isRequired
     },
 
     render: function() {
-      
+        console.log(this.props)
         var classNameStyle = this.props.checked? 'ProductItem Checked' : 'ProductItem';
         return React.DOM.tr( {className: classNameStyle, onClick: this.props.cbMarkItem},
             React.DOM.td( {'data-item': this.props.id}, this.props.product),

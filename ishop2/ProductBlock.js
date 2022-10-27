@@ -13,6 +13,7 @@ var ProductBlock = React.createClass({
           amount: React.PropTypes.number.isRequired,
           url: React.PropTypes.string.isRequired,
           id: React.PropTypes.number.isRequired,
+          checked: React.PropTypes.bool.isRequired,
         })
       )  
     },
@@ -43,7 +44,7 @@ var ProductBlock = React.createClass({
     },
 
     render: function() {
-
+      
       return React.DOM.div( {className:'ProductBlock'},
         React.DOM.div( {className:'MarketTitle'}, this.props.title ),
         React.DOM.table( null,
