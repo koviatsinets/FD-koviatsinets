@@ -13,7 +13,6 @@ var ProductItem = React.createClass({
     },
 
     render: function() {
-      
         var classNameStyle = this.props.checkedId === this.props.id? 'ProductItem Checked' : 'ProductItem';
         return React.DOM.tr( {className: classNameStyle, onClick: () => this.props.cbMarkItem(this.props.id)},
             React.DOM.td( null, this.props.product),
@@ -24,10 +23,10 @@ var ProductItem = React.createClass({
             ),
             React.DOM.td( null,
               React.DOM.button( {className:'Button', 
-              }, 'Удалить' ),
+              onClick: () => this.props.cbDeleteItem(event, this.props.id)}, 'Удалить' ),
             )
           )
-          // onClick: () => this.props.cbDeleteItem(event, this.props.id)
+          
     }
 
 });
