@@ -13,30 +13,26 @@ var ProductBlock = React.createClass({
           amount: React.PropTypes.number.isRequired,
           url: React.PropTypes.string.isRequired,
           id: React.PropTypes.number.isRequired,
-          checked: React.PropTypes.bool.isRequired,
         })
       )  
     },
 
     getInitialState: function() {
       return { 
-          stateArr: this.props.products
+          stateArr: this.props.products,
+          checkedItemId: null,
        };
     },
 
-    deleteItem: function(EO) {
-      EO.stopPropagation(); // чтобы не было конфликта с markItem()
+    deleteItem: function(EO, buttId) {
+      EO.stopPropagation(); // <-- перестает отрабатывать при передаче в функцию параметра buttId
       this.confirm();
-      var resultArr = this.state.stateArr.filter(el => (el.id !== +EO.target.dataset.button));
+      var resultArr = this.state.stateArr.filter(el => (el.id !== buttId));
       this.setState( {stateArr: resultArr} );
     },
 
-    markItem: function(EO) {
-      var resultArr = this.state.stateArr.map(el => {
-        el.checked = (el.id === +EO.target.dataset.item)? true : false;
-        return el;
-      });
-      this.setState( {stateArr: resultArr} );
+    markItem: function(itemId) {
+      this.setState( {checkedItemId: itemId} );
     },
 
     confirm: function() {
@@ -44,7 +40,7 @@ var ProductBlock = React.createClass({
     },
 
     render: function() {
-      
+     
       return React.DOM.div( {className:'ProductBlock'},
         React.DOM.div( {className:'MarketTitle'}, this.props.title ),
         React.DOM.table( null,
@@ -59,7 +55,7 @@ var ProductBlock = React.createClass({
           ),
           React.DOM.tbody( null, this.state.stateArr.map(el=> 
             React.createElement( ProductItem, { key: el.id, id: el.id, product: el.product, 
-                price: el.price, amount: el.amount, url: el.url, checked: el.checked, 
+                price: el.price, amount: el.amount, url: el.url, checkedId: this.state.checkedItemId,
                 cbDeleteItem: this.deleteItem, cbMarkItem: this.markItem}
               )
           ))

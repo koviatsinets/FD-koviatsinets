@@ -7,27 +7,27 @@ var ProductItem = React.createClass({
         price: React.PropTypes.number.isRequired,
         amount: React.PropTypes.number.isRequired,
         url: React.PropTypes.string.isRequired,
-        checked: React.PropTypes.bool.isRequired,
         cbDeleteItem: React.PropTypes.func.isRequired,
         cbMarkItem: React.PropTypes.func.isRequired,
         id: React.PropTypes.number.isRequired
     },
 
     render: function() {
-        console.log(this.props)
-        var classNameStyle = this.props.checked? 'ProductItem Checked' : 'ProductItem';
-        return React.DOM.tr( {className: classNameStyle, onClick: this.props.cbMarkItem},
-            React.DOM.td( {'data-item': this.props.id}, this.props.product),
-            React.DOM.td( {'data-item': this.props.id}, this.props.price),
-            React.DOM.td( {'data-item': this.props.id}, this.props.amount),
-            React.DOM.td( {'data-item': this.props.id},
-              React.DOM.img( {className:'Img', src:`${this.props.url}`, 'data-item': this.props.id} ),
+      
+        var classNameStyle = this.props.checkedId === this.props.id? 'ProductItem Checked' : 'ProductItem';
+        return React.DOM.tr( {className: classNameStyle, onClick: () => this.props.cbMarkItem(this.props.id)},
+            React.DOM.td( null, this.props.product),
+            React.DOM.td( null, this.props.price),
+            React.DOM.td( null, this.props.amount),
+            React.DOM.td( null,
+              React.DOM.img( {className:'Img', src:`${this.props.url}`} ),
             ),
-            React.DOM.td( {'data-item': this.props.id},
-              React.DOM.button( {className:'Button', 'data-button': this.props.id, 
-              onClick: this.props.cbDeleteItem}, 'Удалить' ),
+            React.DOM.td( null,
+              React.DOM.button( {className:'Button', 
+              }, 'Удалить' ),
             )
           )
+          // onClick: () => this.props.cbDeleteItem(event, this.props.id)
     }
 
 });
