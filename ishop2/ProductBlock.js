@@ -25,7 +25,7 @@ var ProductBlock = React.createClass({
     },
 
     deleteItem: function(EO, buttId) {
-      // EO.stopPropagation(); <-- остановка всплытия не происходит:( >
+      EO.stopPropagation();
       this.confirm();
       var resultArr = this.state.stateArr.filter(el => (el.id !== buttId));
       this.setState( {stateArr: resultArr} );
@@ -40,7 +40,7 @@ var ProductBlock = React.createClass({
     },
 
     render: function() {
-      
+
       return React.DOM.div( {className:'ProductBlock'},
         React.DOM.div( {className:'MarketTitle'}, this.props.title ),
         React.DOM.table( null,
