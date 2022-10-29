@@ -23,7 +23,10 @@ var ProductItem = React.createClass({
             ),
             React.DOM.td( null,
               React.DOM.button( {className:'Button', 
-              onClick: (EO) => this.props.cbDeleteItem(EO, this.props.id)}, 'Удалить' ),
+              onClick: (EO) => {
+                EO.stopPropagation();
+                this.props.cbDeleteItem(this.props.id);
+              }}, 'Удалить' ),
             )
           )
           

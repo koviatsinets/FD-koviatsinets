@@ -24,8 +24,7 @@ var ProductBlock = React.createClass({
        };
     },
 
-    deleteItem: function(EO, buttId) {
-      EO.stopPropagation();
+    deleteItem: function(buttId) {
       this.confirm();
       var resultArr = this.state.stateArr.filter(el => (el.id !== buttId));
       this.setState( {stateArr: resultArr} );
