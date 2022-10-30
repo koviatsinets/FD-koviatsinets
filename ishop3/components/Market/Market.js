@@ -57,18 +57,21 @@ class Market extends React.Component {
         <div className='Market'>
             <div className='MarketTitle'>{this.props.title}</div>
             <div className='Container'>
-              <table>
-                <thead>
-                <tr>
-                  <th>{'Название продукта'}</th>
-                  <th>{'Стоимость (руб.)'}</th>
-                  <th>{'Количество на складе (шт.)'}</th>
-                  <th>{'Изображение'}</th>
-                  <th>{'Удалить элемент'}</th>
-                </tr>
-                </thead>
-                <tbody>{itemsCode}</tbody>
-              </table>
+              <div className='TableBlock'>
+                <table>
+                  <thead>
+                  <tr>
+                    <th>{'Название продукта'}</th>
+                    <th>{'Стоимость (руб.)'}</th>
+                    <th>{'Количество на складе (шт.)'}</th>
+                    <th>{'Изображение'}</th>
+                    <th>{'Удалить элемент'}</th>
+                  </tr>
+                  </thead>
+                  <tbody>{itemsCode}</tbody>
+                </table>
+                <button className='ButtonAddItem'>{'Новый'}</button>
+              </div>
               {
                 cardCode &&
                 <Card card={cardCode}/>

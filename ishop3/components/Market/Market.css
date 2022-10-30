@@ -26,6 +26,22 @@
 
   .Market .Container {
     display: flex;
-    justify-content: center;
-    gap: 50px;
+    margin: 0 30px 0 30px;
+    gap: 30px;
+  }
+
+  .Market .TableBlock {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Market .ButtonAddItem {
+    width: 100px;
+    height: 30px;
+    margin: 20px 0 20px 0;
+  }
+
+  .Market button {
+    margin: 0 5px 0 5px;
+    cursor: pointer;
   }

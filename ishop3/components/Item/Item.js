@@ -29,10 +29,11 @@ class Item extends React.Component {
           <img className='Img' src={this.props.url}></img>
         </td>
         <td>
+          <button>{'Редактировать'}</button>
           <button className='Button' onClick={(EO) => {
              EO.stopPropagation();
              this.props.cbDeleteItem(this.props.id);
-          }}>{'удалить'}</button>
+          }}>{'Удалить'}</button>
         </td>
       </tr>
     )
