@@ -1,6 +1,6 @@
 .Card {
     width: 300px;
-    height: 300px;
+    height: 350px;
     border: solid black 1px;
     display: flex;
     flex-direction: column;
@@ -20,4 +20,8 @@
 
 .Card .Price {
     font-size: 24px;
+}
+
+.Card .Amount {
+    font-size: 20px;
 }
