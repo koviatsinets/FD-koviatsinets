@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ProductItem.css';
+import './Item.css';
 
-class ProductItem extends React.Component {
+class Item extends React.Component {
 
   static propTypes = {
       product: PropTypes.string.isRequired,
@@ -17,7 +17,7 @@ class ProductItem extends React.Component {
   
   render() {
 
-    var classNameStyle = this.props.checkedId === this.props.id? 'ProductItem Checked' : 'ProductItem';
+    var classNameStyle = this.props.checkedId === this.props.id? 'Item Checked' : 'Item';
 
     return (
       
@@ -39,4 +39,4 @@ class ProductItem extends React.Component {
   }
 };
 
-export default ProductItem;
+export default Item;

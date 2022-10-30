@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ProductBlock.css';
+import './Market.css';
 
-import ProductItem from './ProductItem';
+import Item from '../Item/Item';
+import Card from '../Card/Card';
 
-class ProductBlock extends React.Component {
+class Market extends React.Component {
 
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -43,31 +44,39 @@ class ProductBlock extends React.Component {
 
   render() {
   
-    const answersCode=this.state.stateArr.map( el =>
-      <ProductItem key={el.id} id={el.id} product={el.product} 
+    const itemsCode=this.state.stateArr.map( el =>
+      <Item key={el.id} id={el.id} product={el.product} 
         price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemId}
         cbDeleteItem={this.deleteItem} cbMarkItem={this.markItem}
       />
     );
 
+    const cardCode = this.state.stateArr.find(el => el.id === this.state.checkedItemId)
+
     return (
-        <div className='ProductBlock'>
+        <div className='Market'>
             <div className='MarketTitle'>{this.props.title}</div>
-            <table>
-              <thead>
-              <tr>
-                <th>{'Название продукта'}</th>
-                <th>{'Стоимость (руб.)'}</th>
-                <th>{'Количество на складе (шт.)'}</th>
-                <th>{'Изображение'}</th>
-                <th>{'Удалить элемент'}</th>
-              </tr>
-              </thead>
-              <tbody>{answersCode}</tbody>
-            </table>
+            <div className='Container'>
+              <table>
+                <thead>
+                <tr>
+                  <th>{'Название продукта'}</th>
+                  <th>{'Стоимость (руб.)'}</th>
+                  <th>{'Количество на складе (шт.)'}</th>
+                  <th>{'Изображение'}</th>
+                  <th>{'Удалить элемент'}</th>
+                </tr>
+                </thead>
+                <tbody>{itemsCode}</tbody>
+              </table>
+              {
+                cardCode &&
+                <Card card={cardCode}/>
+              }
+            </div>
         </div>
     )
   }
 }
 
-export default ProductBlock;
+export default Market;

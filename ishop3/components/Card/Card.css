@@ -1,0 +1,23 @@
+.Card {
+    width: 300px;
+    height: 300px;
+    border: solid black 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.Card .Img {
+    height: 200px;
+}
+
+.Card .Product {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.Card .Price {
+    font-size: 24px;
+}
