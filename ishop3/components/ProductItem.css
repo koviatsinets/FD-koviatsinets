@@ -1,0 +1,11 @@
+.ProductItem .Img {
+    height: 50px;
+  }
+
+.ProductItem .Button {
+    cursor: pointer;
+  }
+
+.Checked {
+    background-color: rgb(223, 223, 223);
+}
