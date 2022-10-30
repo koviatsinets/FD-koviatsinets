@@ -19,7 +19,7 @@ var ProductItem = React.createClass({
             React.DOM.td( null, this.props.price),
             React.DOM.td( null, this.props.amount),
             React.DOM.td( null,
-              React.DOM.img( {className:'Img', src:`${this.props.url}`} ),
+              React.DOM.img( {className:'Img', src: this.props.url} ),
             ),
             React.DOM.td( null,
               React.DOM.button( {className:'Button', 
