@@ -11,6 +11,7 @@
 
 .Card .Img {
     height: 200px;
+    max-width: 300px;
 }
 
 .Card .Product {
