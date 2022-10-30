@@ -37,7 +37,7 @@ class ProductBlock extends React.Component {
     this.setState( {checkedItemId: itemId} );
   };
 
-confirm = () => {
+  confirm = () => {
     alert('Данный товар будет удален')
   };
 
@@ -45,13 +45,12 @@ confirm = () => {
   
     const answersCode=this.state.stateArr.map( el =>
       <ProductItem key={el.id} id={el.id} product={el.product} 
-        price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemI}
+        price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemId}
         cbDeleteItem={this.deleteItem} cbMarkItem={this.markItem}
       />
     );
 
     return (
-        
         <div className='ProductBlock'>
             <div className='MarketTitle'>{this.props.title}</div>
             <table>
@@ -67,7 +66,7 @@ confirm = () => {
               <tbody>{answersCode}</tbody>
             </table>
         </div>
-    );
+    )
   }
 }
 

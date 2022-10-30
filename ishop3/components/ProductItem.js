@@ -20,6 +20,7 @@ class ProductItem extends React.Component {
     var classNameStyle = this.props.checkedId === this.props.id? 'ProductItem Checked' : 'ProductItem';
 
     return (
+      
       <tr className={classNameStyle}  onClick={() => this.props.cbMarkItem(this.props.id)}>
         <td>{this.props.product}</td>
         <td>{this.props.price}</td>
@@ -36,6 +37,6 @@ class ProductItem extends React.Component {
       </tr>
     )
   }
-}
+};
 
 export default ProductItem;
