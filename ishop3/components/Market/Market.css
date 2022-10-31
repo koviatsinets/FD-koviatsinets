@@ -12,6 +12,10 @@
     border: 1px solid black;
     text-align: center;
   }
+
+  .Market th:last-child {
+    width: 180px;
+  }
   
   .Market .MarketTitle {
     background-color: orange;

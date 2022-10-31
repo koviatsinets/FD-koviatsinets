@@ -5,6 +5,7 @@ import './Market.css';
 
 import Item from '../Item/Item';
 import Card from '../Card/Card';
+import Edit from '../Edit/Edit';
 
 class Market extends React.Component {
 
@@ -26,6 +27,8 @@ class Market extends React.Component {
   state = {
     stateArr: this.props.products,
     checkedItemId: null,
+    currEditItem: null,
+    isDisbaledBtns: false,
   };
 
   deleteItem = (buttId) => {
@@ -34,24 +37,37 @@ class Market extends React.Component {
     this.setState( {stateArr: resultArr} );
   };
 
-  markItem = (itemId) => {
-    this.setState( {checkedItemId: itemId} );
-  };
-
   confirm = () => {
     alert('Данный товар будет удален')
   };
 
+  markItem = (itemId) => {
+    this.setState( {checkedItemId: itemId} );
+  };
+
+  editItem = (item) => {
+    this.setState( {currEditItem: item} );
+  }
+
+  disableBtns = () => {
+    this.setState( {isDisbaledBtns: true} );
+  }
+
+  enableBtns = () => {
+    this.setState( {isDisbaledBtns: false} );
+  }
+
   render() {
-  
+    
     const itemsCode=this.state.stateArr.map( el =>
       <Item key={el.id} id={el.id} product={el.product} 
         price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemId}
-        cbDeleteItem={this.deleteItem} cbMarkItem={this.markItem}
+        cbDeleteItem={this.deleteItem} cbMarkItem={this.markItem} cbEditItem={this.editItem}
+        cbDisableBtns={this.disableBtns} cbEnableBtns={this.enableBtns} isDisabledBtnDelete={this.state.isDisbaledBtns}
       />
     );
 
-    const cardCode = this.state.stateArr.find(el => el.id === this.state.checkedItemId)
+    const checkedCode = this.state.stateArr.find(el => el.id === this.state.checkedItemId)
 
     return (
         <div className='Market'>
@@ -61,20 +77,25 @@ class Market extends React.Component {
                 <table>
                   <thead>
                   <tr>
-                    <th>{'Название продукта'}</th>
+                    <th>{'Название'}</th>
                     <th>{'Стоимость (руб.)'}</th>
                     <th>{'Количество на складе (шт.)'}</th>
                     <th>{'Изображение'}</th>
-                    <th>{'Удалить элемент'}</th>
+                    <th>{'Действие'}</th>
                   </tr>
                   </thead>
                   <tbody>{itemsCode}</tbody>
                 </table>
-                <button className='ButtonAddItem'>{'Новый'}</button>
+                <button className='ButtonAddItem' disabled={this.state.isDisbaledBtns}>{'Новый'}</button>
               </div>
               {
-                cardCode &&
-                <Card card={cardCode}/>
+                (checkedCode && !this.state.currEditItem) &&
+                <Card card={checkedCode}/>
+              }
+              {
+                this.state.currEditItem &&
+                <Edit item={this.state.currEditItem} cbEnableBtns={this.enableBtns} 
+                  cbEditItems={this.editItem}/>
               }
             </div>
         </div>

@@ -6,14 +6,14 @@ import './Card.css';
 class Card extends React.Component {
 
   static propTypes = {
-    product: PropTypes.string,
+    id: PropTypes.number,
     price: PropTypes.number,
     amount: PropTypes.number,
     url: PropTypes.string
   };
   
   render() {
-    console.log(this.props.card)
+    
     return (
       
      <div className='Card'>
