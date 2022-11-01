@@ -25,28 +25,51 @@ class Edit extends React.Component {
       })
     )
   };
+
+  state = {
+    product: this.props.item.product,
+    price: this.props.item.price,
+    amount: this.props.item.amount,
+    url: this.props.item.url,
+  };
+
+  changeValueProduct = (EO) => {
+    this.setState({product: EO.target.value})
+  }
+
+  changeValuePrice = (EO) => {
+    this.setState({price: EO.target.value})
+  }
+
+  changeValueAmount = (EO) => {
+    this.setState({amount: EO.target.value})
+  }
+
+  changeValueUrl = (EO) => {
+    this.setState({url: EO.target.value})
+  }
   
   render() {
     
     return (
-      
+
      <div className='Edit'>
         <p className='Title'>{'Редактирование элемента'}</p>
         <div className='Row'>
           <p className='Text'>{'Название:'}</p>
-          <input type="text" defaultValue={this.props.item.product}></input>
+          <input type="text" value={this.state.product} onChange={this.changeValueProduct}></input>
         </div>
         <div className='Row'>
           <p className='Text'>{'Стоимость:'}</p>
-          <input type="text" defaultValue={this.props.item.price}></input>
+          <input type="text" value={this.state.price} onChange={this.changeValuePrice}></input>
         </div>
         <div className='Row'>
           <p className='Text'>{'Количество:'}</p>
-          <input type="text" defaultValue={this.props.item.amount}></input>
+          <input type="text" value={this.state.amount} onChange={this.changeValueAmount}></input>
         </div>
         <div className='Row'>
           <p className='Text'>{'URL изобр.:'}</p>
-          <input type="text" defaultValue={this.props.item.url}></input>
+          <input type="text" value={this.state.url} onChange={this.changeValueUrl}></input>
         </div>
         <div className='Row'>
           <button>{'Сохранить'}</button>

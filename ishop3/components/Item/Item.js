@@ -41,7 +41,7 @@ class Item extends React.Component {
         <td>
           <button onClick={(EO) => {
             EO.stopPropagation();
-            // this.props.cbMarkItem(null)
+            this.props.cbMarkItem(this.props.id)
             this.props.cbDisableBtns();
             this.props.cbEditItem(this.props);
           }}>{'Редактировать'}</button>
