@@ -11,25 +11,28 @@ class Item extends React.Component {
       amount: PropTypes.number.isRequired,
       url: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
+      checkedId: PropTypes.number,
       cbDeleteItem: PropTypes.func.isRequired,
       cbMarkItem: PropTypes.func.isRequired,
       cbEditItem: PropTypes.func.isRequired,
       cbEnableBtns: PropTypes.func.isRequired,
       cbDisableBtns: PropTypes.func.isRequired,
       isDisabledBtnDelete: PropTypes.bool.isRequired,
-
+      isValuesChanged: PropTypes.bool.isRequired,
   };
   
   render() {
-   
+  
     var classNameStyle = this.props.checkedId === this.props.id? 'Item Checked' : 'Item';
-    
+
     return (
-        
+    
       <tr className={classNameStyle}  onClick={() => {
-        this.props.cbEditItem(null);
-        this.props.cbMarkItem(this.props.id);
-        this.props.cbEnableBtns()
+        if (!this.props.isValuesChanged) {
+          this.props.cbEditItem(null);
+          this.props.cbMarkItem(this.props.id);
+          this.props.cbEnableBtns()
+        }
       }
       }>
         <td>{this.props.product}</td>
@@ -39,7 +42,7 @@ class Item extends React.Component {
           <img className='Img' src={this.props.url}></img>
         </td>
         <td>
-          <button onClick={(EO) => {
+          <button disabled={(this.props.isValuesChanged)} onClick={(EO) => {
             EO.stopPropagation();
             this.props.cbMarkItem(this.props.id)
             this.props.cbDisableBtns();

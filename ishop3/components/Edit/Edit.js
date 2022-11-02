@@ -8,6 +8,7 @@ class Edit extends React.Component {
   static propTypes = {
     cbEditItems: PropTypes.func.isRequired,
     cbEnableBtns: PropTypes.func.isRequired,
+    cbSetValuesChanged: PropTypes.func.isRequired,
 
     products: PropTypes.arrayOf(
       PropTypes.shape({
@@ -44,10 +45,11 @@ class Edit extends React.Component {
 
   validationValueProduct = () => {
     if (this.state.product === '') {
-      this.setState({productValidError: '!'})
+      this.setState({productValidError: '!!!'})
     } else {
       this.setState({productValidError: ''})
     }
+    this.comparsionValue()
   }
 
   changeValuePrice = (EO) => {
@@ -56,10 +58,11 @@ class Edit extends React.Component {
 
   validationValuePrice = () => {
     if (this.state.price === '') {
-      this.setState({priceValidError: '!'})
+      this.setState({priceValidError: '!!!'})
     } else {
       this.setState({priceValidError: ''})
     }
+    this.comparsionValue()
   }
 
   changeValueAmount = (EO) => {
@@ -68,10 +71,11 @@ class Edit extends React.Component {
 
   validationValueAmount = () => {
     if (this.state.amount === '') {
-      this.setState({amountValidError: '!'})
+      this.setState({amountValidError: '!!!'})
     } else {
       this.setState({amountValidError: ''})
     }
+    this.comparsionValue()
   }
 
   changeValueUrl = (EO) => {
@@ -80,26 +84,29 @@ class Edit extends React.Component {
 
   validationValueUrl = () => {
     if (this.state.url === '') {
-      this.setState({urlValidError: '!'})
+      this.setState({urlValidError: '!!!'})
     } else {
       this.setState({urlValidError: ''})
     }
+    this.comparsionValue()
   }
 
-  // comparsionValue = () => {
+  comparsionValue = () => {
 
-  //   if (this.props.item.product === this.state.product && 
-  //       this.props.item.price === +this.state.price &&
-  //       this.props.item.amount === +this.state.amount &&
-  //       this.props.item.url === this.state.url) {
-  //         this.setState({comparsionChanges: true})
-  //     } else {
-  //       this.setState({comparsionChanges: false})
-  //     }
-  // }
+    if (this.props.item.product === this.state.product && 
+        this.props.item.price === +this.state.price &&
+        this.props.item.amount === +this.state.amount &&
+        this.props.item.url === this.state.url) {
+          this.props.cbSetValuesChanged(false)
+          // this.setState({comparsionChanges: true}, () => console.log(this.state.comparsionChanges))
+      } else {
+        this.props.cbSetValuesChanged(true)
+        // this.setState({comparsionChanges: false}, () => console.log(this.state.comparsionChanges))
+      }
+  }
   
   render() {
- 
+    
     return (
 
      <div className='Edit'>
@@ -131,6 +138,7 @@ class Edit extends React.Component {
           <button onClick={() => {
             this.props.cbEnableBtns();
             this.props.cbEditItems(null);
+            this.props.cbSetValuesChanged(false)
             }}>{'Отменить'}</button>
         </div>
      </div>

@@ -29,6 +29,7 @@ class Market extends React.Component {
     checkedItemId: null,
     currEditItem: null,
     isDisbaledBtns: false,
+    isValuesChanged: false,
   };
 
   deleteItem = (buttId) => {
@@ -57,13 +58,18 @@ class Market extends React.Component {
     this.setState( {isDisbaledBtns: false} );
   }
 
+  setValuesChanged = (value) => {
+    this.setState({isValuesChanged: value})
+  }
+
   render() {
-    
+
     const itemsCode=this.state.stateArr.map( el =>
       <Item key={el.id} id={el.id} product={el.product} 
         price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemId}
         cbDeleteItem={this.deleteItem} cbMarkItem={this.markItem} cbEditItem={this.editItem}
-        cbDisableBtns={this.disableBtns} cbEnableBtns={this.enableBtns} isDisabledBtnDelete={this.state.isDisbaledBtns}
+        cbDisableBtns={this.disableBtns} cbEnableBtns={this.enableBtns} isDisabledBtnDelete={this.state.isDisbaledBtns} 
+        isValuesChanged={this.state.isValuesChanged}
       />
     );
 
@@ -94,8 +100,8 @@ class Market extends React.Component {
               }
               {
                 this.state.currEditItem &&
-                <Edit item={this.state.currEditItem} cbEnableBtns={this.enableBtns} 
-                  cbEditItems={this.editItem}/>
+                <Edit key={this.state.currEditItem.id} item={this.state.currEditItem} cbEnableBtns={this.enableBtns} 
+                  cbEditItems={this.editItem} cbSetValuesChanged={this.setValuesChanged}/>
               }
             </div>
         </div>
