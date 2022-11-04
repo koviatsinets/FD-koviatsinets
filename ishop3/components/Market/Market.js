@@ -6,6 +6,7 @@ import './Market.css';
 import Item from '../Item/Item';
 import Card from '../Card/Card';
 import Edit from '../Edit/Edit';
+import New from '../New/New';
 
 class Market extends React.Component {
 
@@ -30,6 +31,7 @@ class Market extends React.Component {
     currEditItem: null,
     isDisbaledBtns: false,
     isValuesChanged: false,
+    isNewItem: false,
   };
 
   deleteItem = (buttId) => {
@@ -63,12 +65,27 @@ class Market extends React.Component {
   }
 
   saveEditItem = (item) => {
-    let resultArr = this.state.stateArr.map(el => item.id == el.id ? item : el);
+    var resultArr = this.state.stateArr.map(el => item.id == el.id ? item : el);
     this.setState({stateArr: resultArr})
   }
 
+  createNewItem = () => {
+    this.setState({isNewItem: true});
+  }
+
+  saveNewItem = (item) => {
+    var maxId = Math.max(...this.state.stateArr.map(el=> el.id));
+    item.id = ++maxId;
+    this.state.stateArr.push(item);
+    this.setState({stateArr: this.state.stateArr})
+  }
+
+  setIsNewItem = (value) => {
+    this.setState({isNewItem: value})
+  }
+
   render() {
-console.log(this.state.stateArr)
+    
     const itemsCode=this.state.stateArr.map( el =>
       <Item key={el.id} id={el.id} product={el.product} 
         price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemId}
@@ -97,7 +114,15 @@ console.log(this.state.stateArr)
                   </thead>
                   <tbody>{itemsCode}</tbody>
                 </table>
-                <button className='ButtonAddItem' disabled={this.state.isDisbaledBtns}>{'Новый'}</button>
+                <button className='ButtonAddItem' disabled={this.state.isDisbaledBtns} onClick={() => {
+                  this.createNewItem();
+                  this.disableBtns();
+                  this.setValuesChanged(true);
+                }}>{'Новый'}</button>
+              { 
+                this.state.isNewItem &&
+                <New cbSaveNewItem={this.saveNewItem} cbIsNewItem={this.setIsNewItem} cbEnableBtns={this.enableBtns} cbSetValuesChanged={this.setValuesChanged}></New>
+              }
               </div>
               {
                 (checkedCode && !this.state.currEditItem) &&

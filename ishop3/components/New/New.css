@@ -1,0 +1,35 @@
+.New {
+    width: 300px;
+    height: 180px;
+    border: solid black 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.New .Row {
+    display: flex;
+}
+
+.New .Text {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.New .Title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.New button {
+    margin: 5px;
+}
+
+.New .Error {
+    color: red;
+    font-weight: bold;
+    margin: 0 5px 0 5px;
+    width: 20px;
+}

@@ -3,6 +3,10 @@
     padding: 0;
   }
   
+  .Market {
+    margin-bottom: 50px;
+  }
+
   .Market table {
     border-collapse: collapse;
   }

@@ -31,7 +31,7 @@ class Item extends React.Component {
         if (!this.props.isValuesChanged) {
           this.props.cbEditItem(null);
           this.props.cbMarkItem(this.props.id);
-          this.props.cbEnableBtns()
+          this.props.cbEnableBtns();
         }
       }
       }>
@@ -44,7 +44,7 @@ class Item extends React.Component {
         <td>
           <button disabled={(this.props.isValuesChanged)} onClick={(EO) => {
             EO.stopPropagation();
-            this.props.cbMarkItem(this.props.id)
+            this.props.cbMarkItem(this.props.id);
             this.props.cbDisableBtns();
             this.props.cbEditItem(this.props);
           }}>{'Редактировать'}</button>
