@@ -52,7 +52,7 @@ class Edit extends React.Component {
   }
 
   changeValuePrice = (EO) => {
-    this.setState({price: EO.target.value}, this.validationValuePrice);
+    this.setState({price: +EO.target.value}, this.validationValuePrice);
   }
 
   validationValuePrice = () => {
@@ -65,7 +65,7 @@ class Edit extends React.Component {
   }
 
   changeValueAmount = (EO) => {
-    this.setState({amount: EO.target.value}, this.validationValueAmount);
+    this.setState({amount: +EO.target.value}, this.validationValueAmount);
   }
 
   validationValueAmount = () => {
