@@ -36,7 +36,6 @@ class Edit extends React.Component {
     priceValidError: '',
     amountValidError: '',
     urlValidError: '',
-    comparsionChanges: false,
   };
 
   changeValueProduct = (EO) => {
@@ -53,7 +52,7 @@ class Edit extends React.Component {
   }
 
   changeValuePrice = (EO) => {
-    this.setState({price: EO.target.value}, this.validationValuePrice)
+    this.setState({price: +EO.target.value}, this.validationValuePrice)
   }
 
   validationValuePrice = () => {
@@ -66,7 +65,7 @@ class Edit extends React.Component {
   }
 
   changeValueAmount = (EO) => {
-    this.setState({amount: EO.target.value}, this.validationValueAmount)
+    this.setState({amount: +EO.target.value}, this.validationValueAmount)
   }
 
   validationValueAmount = () => {
@@ -98,10 +97,8 @@ class Edit extends React.Component {
         this.props.item.amount === +this.state.amount &&
         this.props.item.url === this.state.url) {
           this.props.cbSetValuesChanged(false)
-          // this.setState({comparsionChanges: true}, () => console.log(this.state.comparsionChanges))
       } else {
         this.props.cbSetValuesChanged(true)
-        // this.setState({comparsionChanges: false}, () => console.log(this.state.comparsionChanges))
       }
   }
   
@@ -132,7 +129,17 @@ class Edit extends React.Component {
           <p className='Error'>{this.state.urlValidError}</p>
         </div>
         <div className='Row'>
-          <button disabled={ 
+          <button onClick={() => {this.props.cbSaveEditItem({
+            product: this.state.product,
+            id: this.props.item.id,
+            price: this.state.price,
+            amount: this.state.amount,
+            url: this.state.url,
+          });
+            this.props.cbEnableBtns();
+            this.props.cbEditItems(null);
+            this.props.cbSetValuesChanged(false)
+          }} disabled={ 
             this.state.productValidError || this.state.priceValidError || this.state.amountValidError || this.state.urlValidError
             }>{'Сохранить'}</button>
           <button onClick={() => {

@@ -62,8 +62,13 @@ class Market extends React.Component {
     this.setState({isValuesChanged: value})
   }
 
-  render() {
+  saveEditItem = (item) => {
+    let resultArr = this.state.stateArr.map(el => item.id == el.id ? item : el);
+    this.setState({stateArr: resultArr})
+  }
 
+  render() {
+console.log(this.state.stateArr)
     const itemsCode=this.state.stateArr.map( el =>
       <Item key={el.id} id={el.id} product={el.product} 
         price={el.price} amount={el.amount} url={el.url} checkedId={this.state.checkedItemId}
@@ -101,7 +106,7 @@ class Market extends React.Component {
               {
                 this.state.currEditItem &&
                 <Edit key={this.state.currEditItem.id} item={this.state.currEditItem} cbEnableBtns={this.enableBtns} 
-                  cbEditItems={this.editItem} cbSetValuesChanged={this.setValuesChanged}/>
+                  cbEditItems={this.editItem} cbSetValuesChanged={this.setValuesChanged} cbSaveEditItem={this.saveEditItem}/>
               }
             </div>
         </div>
