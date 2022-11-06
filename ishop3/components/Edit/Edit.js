@@ -138,14 +138,14 @@ class Edit extends React.Component {
           });
             this.props.cbEnableBtns();
             this.props.cbEditItems(null);
-            this.props.cbSetValuesChanged(false)
+            this.props.cbSetValuesChanged(false);
           }} disabled={ 
             this.state.productValidError || this.state.priceValidError || this.state.amountValidError || this.state.urlValidError
             }>{'Сохранить'}</button>
           <button onClick={() => {
             this.props.cbEnableBtns();
             this.props.cbEditItems(null);
-            this.props.cbSetValuesChanged(false)
+            this.props.cbSetValuesChanged(false);
             }}>{'Отменить'}</button>
         </div>
      </div>

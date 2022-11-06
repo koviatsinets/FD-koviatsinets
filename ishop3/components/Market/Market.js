@@ -74,10 +74,11 @@ class Market extends React.Component {
   }
 
   saveNewItem = (item) => {
-    var maxId = Math.max(...this.state.stateArr.map(el=> el.id));
-    item.id = ++maxId;
-    this.state.stateArr.push(item);
-    this.setState({stateArr: this.state.stateArr})
+    var maxId = this.state.stateArr.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id;
+    item.id = maxId + 1;
+    var arr = this.state.stateArr.slice()
+    arr.push(item)
+    this.setState({stateArr: arr})
   }
 
   setIsNewItem = (value) => {
