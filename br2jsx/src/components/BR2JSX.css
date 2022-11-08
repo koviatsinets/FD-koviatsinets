@@ -1,0 +1,9 @@
+div {
+    width: min-content;
+    padding: 10px;
+    background-color: darkslategray;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
