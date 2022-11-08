@@ -28,3 +28,5 @@ class BR2JSX extends React.Component {
 };
 
 export default BR2JSX;
+
+// т.к. конструкция "<> </>" не поддерживает ключи, заменил на span
