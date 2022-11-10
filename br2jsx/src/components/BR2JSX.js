@@ -22,11 +22,7 @@ class BR2JSX extends React.Component {
   }
 
   render() {
-   
-
-    return (
-      <div>{this.state.arr}</div>
-    );
+    return  <div>{this.state.arr}</div>;
   };
 };
 
