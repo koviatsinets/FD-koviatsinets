@@ -4,10 +4,6 @@ import BR2JSX from './components/BR2JSX'
 import './App.css';
 
 class App extends React.Component {
-  
-  state = {
-
-  };
 
   render() {
     let text="первый<br>второй<br/>третий<br />последний";

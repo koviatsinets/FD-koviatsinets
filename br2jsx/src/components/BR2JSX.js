@@ -4,29 +4,22 @@ import './BR2JSX.css';
 
 class BR2JSX extends React.Component {
 
-  state = {
-    text: this.props.text,
-  };
-
   render() {
    
+    var newArr = []
+    var arr = this.props.text.split(/<br\s*\/?>/g);
+
+    for (let i = 0; i <= arr.length - 1; i++) {
+      newArr.push(arr[i]);
+      if (i !== arr.length - 1) {
+      newArr.push(<br key={i}/>)
+    }
+    }
+
     return (
-      <div>
-        {
-          this.state.text.split(/<br\s*\/?>/g).map((el, i) => {
-            return (
-              <span key={i}>
-                {el}
-                <br/>
-              </span>
-            )
-          })
-        }
-      </div>
+      <div>{newArr}</div>
     );
   };
 };
 
 export default BR2JSX;
-
-// т.к. конструкция "<> </>" не поддерживает ключи, заменил на span
