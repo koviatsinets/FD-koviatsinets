@@ -13,7 +13,7 @@ class BR2JSX extends React.Component {
       newArr.push(arr[i]);
       if (i !== arr.length - 1) {
       newArr.push(<br key={i}/>)
-    }
+      }
     }
 
     return (
