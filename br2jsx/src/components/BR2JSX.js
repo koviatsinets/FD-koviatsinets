@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './BR2JSX.css';
 
 class BR2JSX extends React.Component {
+
+  static propTypes = {
+    text: PropTypes.string.isRequired
+  }
 
   state = {
     arr: this.props.text
@@ -22,6 +27,7 @@ class BR2JSX extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return  <div>{this.state.arr}</div>;
   };
 };
