@@ -3,3 +3,7 @@ div {
     border: solid 5px;
     text-align: center;
 }
+
+input {
+    margin: 0 3px 0 3px;
+}
