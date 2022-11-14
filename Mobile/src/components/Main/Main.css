@@ -1,0 +1,20 @@
+.Main table {
+    border-collapse: collapse;
+}
+
+.Main td, .Main th {
+    padding: 5px;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    text-align: center;
+    height: 30px;
+}
+
+.Main table {
+    margin: 10px 0 10px 0;
+    width: 800px;
+}
+
+button {
+    cursor: pointer;
+}
