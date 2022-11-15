@@ -6,7 +6,7 @@ import './Client.css';
 class Client extends React.Component {
 
     render() {
-        console.log(this.props.clients)
+
         return (
             <tr className='Client'>
                 <td>{this.props.userSurname}</td>

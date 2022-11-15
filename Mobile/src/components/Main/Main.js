@@ -13,23 +13,40 @@ class Main extends React.Component {
     }
 
     state = {
-        clients: this.props.clients
+        resultClients: this.props.clients,
+        isShowNew: false,
+    }
+
+    setIsShowNew = () => {
+        this.setState({isShowNew: !this.state.isShowNew})
+    }
+
+    setShowActive = () => {
+        let arr = this.props.clients.filter(el => el.status)
+        this.setState({resultClients: arr})
+    }
+
+    setShowBlocked = () => {
+        let arr = this.props.clients.filter(el => !el.status)
+        this.setState({resultClients: arr})
+    }
+
+    setShowAll = () => {
+        this.setState({resultClients: this.props.clients})
     }
 
     render() {
 
-        console.log(this.props.clients)
-
-        let result = this.state.clients.map(el => 
+        let result = this.state.resultClients.map(el => 
             <Client key={el.id} userSurname={el.userSurname} userName={el.userName} 
             userPatronym={el.userPatronym} balance={el.balance} status={el.status}></Client>)
 
         return (
             <div className='Main'>
                 <div>
-                    <button>Все</button>
-                    <button>Активные</button>
-                    <button>Заблокированные</button>
+                    <button onClick={this.setShowAll}>Все</button>
+                    <button onClick={this.setShowActive}>Активные</button>
+                    <button onClick={this.setShowBlocked}>Заблокированные</button>
                 </div>
                 <table>
                   <thead>
@@ -47,8 +64,10 @@ class Main extends React.Component {
                     {result}
                   </tbody>
                 </table>
-                <button>Добавить клиента</button>
-                <New></New>
+                <button onClick={this.setIsShowNew}>Добавить клиента</button>
+                {
+                    this.state.isShowNew && <New></New>
+                }
             </div>
         )
     }

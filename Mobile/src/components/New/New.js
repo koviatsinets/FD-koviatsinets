@@ -26,6 +26,7 @@ class New extends React.Component {
                     <p>Баланс</p>
                     <input type='text'></input>
                 </div>
+                <button>Добавить</button>
             </div>
         )
 
