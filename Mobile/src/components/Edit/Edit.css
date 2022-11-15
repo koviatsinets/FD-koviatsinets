@@ -1,31 +1,31 @@
-.New {
+.Edit {
     display: flex;
     flex-direction: column;
-    width: 240px;
+    width: 230px;
     border: solid lightgrey 1px;
     padding: 10px;
     margin-top: 10px;
 }
 
-.New .Title {
+.Edit .Title {
     font-size: 20px;
     width: auto;
     margin: 0 0 10px 0;
 }
 
-.New div {
+.Edit div {
     display: flex;
 }
 
-.New p {
+.Edit p {
     width: 70px;
 }
 
-.New * {
+.Edit * {
     margin: 0;
     padding: 0;
 }
 
-.New button {
+.Edit button {
     margin-top: 10px;
 }
