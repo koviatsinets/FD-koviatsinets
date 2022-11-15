@@ -1,52 +1,58 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-import './Main.css';
 
 import Client from '../Client/Client';
 import New from '../New/New';
 
+import {clientEvents} from '../../events';
+
+import './Main.css';
+
+
 class Main extends React.Component {
-
-    static propTypes = {
-
-    }
 
     state = {
         resultClients: this.props.clients,
         isShowNew: false,
     }
 
+    componentDidMount = () => {
+        clientEvents.addListener('EDeleteClicked', this.deleteClient);
+        // clientEvents.addListener('EFreeAnswerTextChanged',this.freeAnswerTextChanged);
+      };
+    
+      componentWillUnmount = () => {
+        clientEvents.removeListener('EDeleteClicked', this.deleteClient);
+        // voteEvents.removeListener('EFreeAnswerTextChanged',this.freeAnswerTextChanged);
+      };
+
     setIsShowNew = () => {
         this.setState({isShowNew: !this.state.isShowNew})
     }
 
-    setShowActive = () => {
-        let arr = this.props.clients.filter(el => el.status)
-        this.setState({resultClients: arr})
+    filterClients = (value) => {
+        if (value === null) {
+            this.setState({resultClients: this.props.clients})
+        } else {
+            this.setState({resultClients: this.props.clients.filter(el => el.status === value)})
+        }
     }
 
-    setShowBlocked = () => {
-        let arr = this.props.clients.filter(el => !el.status)
-        this.setState({resultClients: arr})
-    }
-
-    setShowAll = () => {
-        this.setState({resultClients: this.props.clients})
+    deleteClient = (value) => {
+        this.setState({resultClients: this.state.resultClients.filter(el => el.id !== value)})
     }
 
     render() {
-
+        console.log(this.props)
         let result = this.state.resultClients.map(el => 
-            <Client key={el.id} userSurname={el.userSurname} userName={el.userName} 
+            <Client key={el.id} id={el.id} userSurname={el.userSurname} userName={el.userName} 
             userPatronym={el.userPatronym} balance={el.balance} status={el.status}></Client>)
 
         return (
             <div className='Main'>
                 <div>
-                    <button onClick={this.setShowAll}>Все</button>
-                    <button onClick={this.setShowActive}>Активные</button>
-                    <button onClick={this.setShowBlocked}>Заблокированные</button>
+                    <button onClick={() => this.filterClients(null)}>Все</button>
+                    <button onClick={() => this.filterClients(true)}>Активные</button>
+                    <button onClick={() => this.filterClients(false)}>Заблокированные</button>
                 </div>
                 <table>
                   <thead>

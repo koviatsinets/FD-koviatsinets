@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
 
-let voteEvents=new EventEmitter(); 
+let clientEvents=new EventEmitter(); 
 
-export {voteEvents};
+export {clientEvents};

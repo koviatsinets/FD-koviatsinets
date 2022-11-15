@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {clientEvents} from '../../events';
 
 import './Client.css';
 
 class Client extends React.Component {
+
+    deleteClient = () => {
+        clientEvents.emit("EDeleteClicked", this.props.id)
+    }
 
     render() {
 
@@ -24,7 +28,7 @@ class Client extends React.Component {
                     <button>Редактировать</button>
                 </td>
                 <td>
-                    <button>Удалить</button>
+                    <button onClick={this.deleteClient}>Удалить</button>
                 </td>
             </tr>
         )
