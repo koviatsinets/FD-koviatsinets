@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Main.css';
 
 import Client from '../Client/Client';
+import New from '../New/New';
 
 class Main extends React.Component {
 
@@ -47,25 +48,7 @@ class Main extends React.Component {
                   </tbody>
                 </table>
                 <button>Добавить клиента</button>
-                {/* <div>
-                    <p>Добавить нового клиента:</p>
-                    <div>
-                        <p>Фамилия</p>
-                        <input type='text'></input>
-                    </div>
-                    <div>
-                        <p>Имя</p>
-                        <input type='text'></input>
-                    </div>
-                    <div>
-                        <p>Отчество</p>
-                        <input type='text'></input>
-                    </div>
-                    <div>
-                        <p>Баланс</p>
-                        <input type='text'></input>
-                    </div>
-                </div> */}
+                <New></New>
             </div>
         )
     }

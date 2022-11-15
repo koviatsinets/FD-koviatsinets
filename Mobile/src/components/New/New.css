@@ -1,0 +1,27 @@
+.New {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    border: solid lightgrey 1px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.New .Title {
+    font-size: 20px;
+    width: auto;
+    margin: 0 0 10px 0;
+}
+
+.New div {
+    display: flex;
+}
+
+.New p {
+    width: 70px;
+}
+
+.New * {
+    margin: 0;
+    padding: 0;
+}
