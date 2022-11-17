@@ -16,7 +16,6 @@ class New extends React.Component {
       userName: this.newNameRef.current.value,
       userPatronym: this.newPatronymRef.current.value,
       balance: this.newBalanceRef.current.value,
-      status: true,
     };
     clientEvents.emit("EAddClicked", client)
   };

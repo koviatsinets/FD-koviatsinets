@@ -18,13 +18,9 @@ class Edit extends React.Component {
       userName: this.editNameRef.current.value,
       userPatronym: this.editPatronymRef.current.value,
       balance: this.editBalanceRef.current.value,
-      status: true,
     };
 
-    console.log(client)
-
     clientEvents.emit("ESaveEditClicked", client)
- 
   };
    
   render() {

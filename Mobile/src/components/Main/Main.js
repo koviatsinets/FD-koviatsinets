@@ -57,14 +57,14 @@ class Main extends React.Component {
   filterClients = () => {
     var res = this.state.clients;
     if (!this.state.isShowActiveClients) {
-      res = res.filter(el => el.status)
+      res = res.filter(el => el.balance > 0)
     }
     if (!this.state.isShowBlockedClients) {
-      res = res.filter(el => !el.status)
+      res = res.filter(el => el.balance < 0)
     }
       res = res.map(el => 
       	<Client key={el.id} id={el.id} userSurname={el.userSurname} userName={el.userName} 
-      	userPatronym={el.userPatronym} balance={el.balance} status={el.status}></Client>)
+      	userPatronym={el.userPatronym} balance={el.balance}></Client>)
       return res;
   }
 
@@ -86,9 +86,8 @@ class Main extends React.Component {
   }
 
   render() {
-
+    console.log('Рендер <Main/>')
     return (
-
       <div className='Main'>
         <div>
           <button onClick={this.setIsShowAllClients}>Все</button>
@@ -116,7 +115,7 @@ class Main extends React.Component {
 					this.state.isShowEdit &&
 					<Edit id={this.state.editClient.id} userSurname={this.state.editClient.userSurname}
 					userName={this.state.editClient.userName} userPatronym={this.state.editClient.userPatronym}
-					balance={this.state.editClient.balance} status={this.state.editClient.status}></Edit>
+					balance={this.state.editClient.balance}></Edit>
         }
         {
         	this.state.isShowNew && <New></New>

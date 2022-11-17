@@ -14,7 +14,7 @@ class Client extends React.Component {
   }
 
   render() {
-
+    console.log('Рендер <Client/>')
   	return (
       <tr className='Client'>
         <td>{this.props.userSurname}</td>
@@ -22,7 +22,7 @@ class Client extends React.Component {
         <td>{this.props.userPatronym}</td>
         <td>{this.props.balance}</td>
         {
-          this.props.status
+          this.props.balance > 0
           ?
           <td className='active'>active</td>
           :

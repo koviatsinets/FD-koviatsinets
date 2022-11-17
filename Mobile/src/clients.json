@@ -1,12 +1,6 @@
 [
-    {"id": 1, "userSurname": "Иванов", "userName": "Иван",  "userPatronym": "Иванович", "balance": 200, "status": true},
-    {"id": 2, "userSurname": "Сидоров", "userName": "Сидор",  "userPatronym": "Сидорович", "balance": 250, "status": true},
-    {"id": 3, "userSurname": "Петров", "userName": "Петр",  "userPatronym": "Петрович", "balance": 180, "status": true},
-    {"id": 4, "userSurname": "Григорьев", "userName": "Григорий",  "userPatronym": "Григорьевич", "balance": -220, "status": false},
-    {"id": 5, "userSurname": "Александров", "userName": "Александр",  "userPatronym": "Александрович", "balance": -280, "status": false},
-    {"id": 6, "userSurname": "Алексеев", "userName": "Алексей",  "userPatronym": "Алексеевич", "balance": 120, "status": true},
-    {"id": 7, "userSurname": "Антонов", "userName": "Антон",  "userPatronym": "Антонович", "balance": 220, "status": true},
-    {"id": 8, "userSurname": "Сергеев", "userName": "Сергей",  "userPatronym": "Сергеевич", "balance": -80, "status": false},
-    {"id": 9, "userSurname": "Константинов", "userName": "Константин",  "userPatronym": "Константинович", "balance": 300, "status": true},
-    {"id": 10, "userSurname": "Евгеньев", "userName": "Евгений",  "userPatronym": "Евгеньевич", "balance": 150, "status": true}
+    {"id": 1, "userSurname": "Иванов", "userName": "Иван",  "userPatronym": "Иванович", "balance": 200},
+    {"id": 2, "userSurname": "Сидоров", "userName": "Сидор",  "userPatronym": "Сидорович", "balance": 250},
+    {"id": 3, "userSurname": "Петров", "userName": "Петр",  "userPatronym": "Петрович", "balance": 180},
+    {"id": 4, "userSurname": "Григорьев", "userName": "Григорий",  "userPatronym": "Григорьевич", "balance": -220}
 ]
