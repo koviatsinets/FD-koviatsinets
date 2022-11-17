@@ -24,7 +24,7 @@ class Edit extends React.PureComponent {
   };
    
   render() {
-
+    console.log('Рендер <Edit/>')
     return (
       <div className='Edit'>
         <p className='Title'>Редактирование клиента:</p>

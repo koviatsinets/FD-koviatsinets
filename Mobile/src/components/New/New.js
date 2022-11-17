@@ -21,7 +21,7 @@ class New extends React.PureComponent {
   };
     
   render() {
-
+    console.log('Рендер <New/>')
   	return (
       <div className='New'>
         <p className='Title'>Добавление нового клиента:</p>

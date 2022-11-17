@@ -59,8 +59,8 @@ class Main extends React.PureComponent {
       res = res.filter(el => el.balance < 0)
     }
     res = res.map(el => 
-      <Client key={el.id} id={el.id} userSurname={el.userSurname} userName={el.userName} 
-      userPatronym={el.userPatronym} balance={el.balance}></Client>)
+      <Client key={el.id} client={el}></Client>
+    )
     return res;
   }
 

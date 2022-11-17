@@ -6,23 +6,23 @@ import './Client.css';
 class Client extends React.PureComponent {
 
   deleteClient = () => {
-    clientEvents.emit("EDeleteClicked", this.props.id)
+    clientEvents.emit("EDeleteClicked", this.props.client.id)
   }
 
   editClient = () => {
-    clientEvents.emit("EEditClicked", this.props)
+    clientEvents.emit("EEditClicked", this.props.client)
   }
 
   render() {
     console.log('Рендер <Client/>')
   	return (
       <tr className='Client'>
-        <td>{this.props.userSurname}</td>
-        <td>{this.props.userName}</td>
-        <td>{this.props.userPatronym}</td>
-        <td>{this.props.balance}</td>
+        <td>{this.props.client.userSurname}</td>
+        <td>{this.props.client.userName}</td>
+        <td>{this.props.client.userPatronym}</td>
+        <td>{this.props.client.balance}</td>
         {
-          this.props.balance > 0
+          this.props.client.balance > 0
           ?
           <td className='active'>active</td>
           :
