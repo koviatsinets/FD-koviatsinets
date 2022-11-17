@@ -45,11 +45,6 @@ class Main extends React.PureComponent {
     this.setState({isShowActiveClients: true, isShowBlockedClients: true});
   }
 
-  deleteClient = (id) => {
-    this.setState({clients: this.state.clients.filter(el => el.id !== id)})
-    this.render()
-  }
-
   filterClients = () => {
     var res = this.state.clients;
     if (!this.state.isShowActiveClients) {
@@ -62,6 +57,10 @@ class Main extends React.PureComponent {
       <Client key={el.id} client={el}></Client>
     )
     return res;
+  }
+
+  deleteClient = (id) => {
+    this.setState({clients: this.state.clients.filter(el => el.id !== id)})
   }
 
   showAddClientMenu = () => {
