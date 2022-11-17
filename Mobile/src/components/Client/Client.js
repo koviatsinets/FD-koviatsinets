@@ -3,7 +3,7 @@ import {clientEvents} from '../../events';
 
 import './Client.css';
 
-class Client extends React.Component {
+class Client extends React.PureComponent {
 
   deleteClient = () => {
     clientEvents.emit("EDeleteClicked", this.props.id)

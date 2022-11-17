@@ -8,7 +8,7 @@ import {clientEvents} from '../../events';
 
 import './Main.css';
 
-class Main extends React.Component {
+class Main extends React.PureComponent {
 
   state = {
     clients: this.props.clients,
@@ -16,26 +16,22 @@ class Main extends React.Component {
     isShowBlockedClients: true,
   	isShowNew: false,
     isShowEdit: false,
-    editClient: null
+    editClient: null,
   }
 
   componentDidMount = () => {
     clientEvents.addListener('EDeleteClicked', this.deleteClient);
     clientEvents.addListener('EAddClicked', this.addClient);
-    clientEvents.addListener('EEditClicked', this.editClient);
-    clientEvents.addListener('ESaveEditClicked', this.saveEditClient);
+    clientEvents.addListener('EEditClicked', this.showEditClientMenu);
+    clientEvents.addListener('ESaveEditClicked', this.editClient);
   };
     
   componentWillUnmount = () => {
   	clientEvents.removeListener('EDeleteClicked', this.deleteClient);
     clientEvents.removeListener('EAddClicked', this.addClient);
-    clientEvents.removeListener('EEditClicked', this.editClient);
-    clientEvents.removeListener('ESaveEditClicked', this.saveEditClient);
+    clientEvents.removeListener('EEditClicked', this.showEditClientMenu);
+    clientEvents.removeListener('ESaveEditClicked', this.editClient);
   };
-
-  setIsShowNew = () => {
-    this.setState({isShowNew: !this.state.isShowNew})
-  }
 
   setIsShowActiveClients = () => {
     this.setState({isShowActiveClients: false, isShowBlockedClients: true});
@@ -62,26 +58,29 @@ class Main extends React.Component {
     if (!this.state.isShowBlockedClients) {
       res = res.filter(el => el.balance < 0)
     }
-      res = res.map(el => 
-      	<Client key={el.id} id={el.id} userSurname={el.userSurname} userName={el.userName} 
-      	userPatronym={el.userPatronym} balance={el.balance}></Client>)
-      return res;
+    res = res.map(el => 
+      <Client key={el.id} id={el.id} userSurname={el.userSurname} userName={el.userName} 
+      userPatronym={el.userPatronym} balance={el.balance}></Client>)
+    return res;
+  }
+
+  showAddClientMenu = () => {
+    this.setState({isShowNew: !this.state.isShowNew})
   }
 
   addClient = (obj) => {
   	var maxId = this.state.clients.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id;
-    obj.id = maxId + 1;
-    var newArr = this.state.clients.slice();
-    newArr.push(obj);
+    var newObj = {...obj, id: maxId + 1}
+    var newArr = [...this.state.clients, newObj];
     this.setState({clients: newArr, isShowNew: false});
   }
 
-  editClient = (obj) => {
+  showEditClientMenu = (obj) => {
     this.setState({isShowEdit: true, editClient: obj})
   }
 
-  saveEditClient = (obj) => {
-    var newArr = this.state.clients.map(el => obj.id == el.id ? obj : el);
+  editClient = (obj) => {
+    var newArr = [...this.state.clients].map(el => obj.id === el.id ? obj : el);
     this.setState({clients: newArr, isShowEdit: false})
   }
 
@@ -110,7 +109,7 @@ class Main extends React.Component {
           {this.filterClients()}
         	</tbody>
         </table>
-        <button onClick={this.setIsShowNew}>Добавить клиента</button>
+        <button onClick={this.showAddClientMenu}>Добавить клиента</button>
         {
 					this.state.isShowEdit &&
 					<Edit id={this.state.editClient.id} userSurname={this.state.editClient.userSurname}

@@ -3,7 +3,7 @@ import {clientEvents} from '../../events';
 
 import './Edit.css';
 
-class Edit extends React.Component {
+class Edit extends React.PureComponent {
 
   editSurnameRef = React.createRef();
   editNameRef = React.createRef();

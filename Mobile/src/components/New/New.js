@@ -3,7 +3,7 @@ import {clientEvents} from '../../events';
 
 import './New.css';
 
-class New extends React.Component {
+class New extends React.PureComponent {
 
   newSurnameRef = React.createRef();
   newNameRef = React.createRef();
