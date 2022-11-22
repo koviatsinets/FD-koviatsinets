@@ -1,0 +1,25 @@
+.Tooltip {
+    width: 100px;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 auto;
+    cursor: default;
+    position: relative;
+}
+
+.Tooltip .Message {
+    font-size: 24px;
+    padding: 2px;
+    background-color: lightcyan;
+    position: absolute;
+    top: 20px;
+    left: 70px;
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    animation: shadow 0.5s;
+}
+
+@keyframes shadow {
+    from {opacity: 0}
+    to {opacity: 1}
+    }
