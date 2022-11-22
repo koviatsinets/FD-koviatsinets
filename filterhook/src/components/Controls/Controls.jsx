@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 import './Controls.css'
 
@@ -8,17 +8,15 @@ export default (props) => {
   const [text, setText] = useState('')
   const [checkbox, setCheckbox] = useState(false)
 
-  const textRef=useRef(null);
-  const checkboxRef=useRef(false);
 
-  const setTextValue = () => {
-    setText(textRef.current.value)
-		props.cbCheckWords({text: textRef.current.value, checkbox: checkbox})
+  const setTextValue = (eo) => {
+    setText(eo.target.value)
+		props.cbCheckWords({text: eo.target.value, checkbox: checkbox})
   }
 
-  const setCheckboxState = () => {
-    setCheckbox(!checkbox)
-		props.cbCheckWords({text: text, checkbox: !checkbox})
+  const setCheckboxState = (eo) => {
+    setCheckbox(eo.target.checked)
+		props.cbCheckWords({text: text, checkbox: eo.target.checked})
   }
 
   const resetControls = () => {
@@ -29,8 +27,8 @@ export default (props) => {
 
   return (
     <div className='Controls'>
-      <input type='checkbox' checked={checkbox} onChange={setCheckboxState} ref={checkboxRef}></input>
-      <input type='text' value={text} onChange={setTextValue} ref={textRef}></input>
+      <input type='checkbox' checked={checkbox} onChange={setCheckboxState}></input>
+      <input type='text' value={text} onChange={setTextValue}></input>
       <input type='button' value={'Сброс'} onClick={resetControls}></input>
     </div>
   )
