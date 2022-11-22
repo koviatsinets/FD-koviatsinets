@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import './Controls.css'
 
@@ -8,21 +8,21 @@ export default (props) => {
   const [text, setText] = useState('')
   const [checkbox, setCheckbox] = useState(false)
 
+	useEffect(() => {
+		props.cbCheckWords({text: text, checkbox: checkbox})
+	}, [text, checkbox])
 
   const setTextValue = (eo) => {
     setText(eo.target.value)
-		props.cbCheckWords({text: eo.target.value, checkbox: checkbox})
   }
 
   const setCheckboxState = (eo) => {
     setCheckbox(eo.target.checked)
-		props.cbCheckWords({text: text, checkbox: eo.target.checked})
   }
 
   const resetControls = () => {
     setText('');
     setCheckbox(false);
-		props.cbCheckWords({text: '', checkbox: false})
   }
 
   return (
