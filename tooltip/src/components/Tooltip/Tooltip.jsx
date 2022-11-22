@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import './Tooltip.css'
+import './Tooltip.css';
 
 const Tooltip = props => {
 
     const [visibility, setVisibility] = useState(false);
 
-    const display = value => setVisibility(value)
+    const display = value => setVisibility(value);
 
   return (
     <div className='Tooltip' onMouseOver={() => display(true)} onMouseOut={() => display(false)}>
@@ -17,6 +17,6 @@ const Tooltip = props => {
         }
     </div>
   )
-}
+};
 
-export default Tooltip
+export default Tooltip;
