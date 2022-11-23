@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Tooltip.css';
 
 const Tooltip = props => {
 
     const [visibility, setVisibility] = useState(false);
+    const [hover, setHover] = useState(false);
 
-    const display = value => setVisibility(value);
-  
-    const tooltipStyle = {animationDuration: props.time + 's'}
+    const display = value => setHover(value);
+
+    useEffect(() => {
+      const timer=setTimeout(()=>{
+        setVisibility(true);
+        console.log('timer start');
+      },1000);
+
+      return ()=>{
+        clearTimeout(timer);
+        setVisibility(false);
+        console.log("timer stop");
+      };
+    }, [hover])
     
   return (
     <div className='Tooltip' onMouseOver={() => display(true)} onMouseOut={() => display(false)}>
         {props.children}
         {
-        visibility && 
-        <div className='Message' style={tooltipStyle}>{props.tooltip}</div>
+        (visibility && hover) && 
+        <div className='Message'>{props.tooltip}</div>
         }
     </div>
   )

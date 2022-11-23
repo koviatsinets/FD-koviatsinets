@@ -16,10 +16,4 @@
     left: 70px;
     border-radius: 5px;
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-    animation: shadow;
 }
-
-@keyframes shadow {
-    from {opacity: 0}
-    to {opacity: 1}
-    }
