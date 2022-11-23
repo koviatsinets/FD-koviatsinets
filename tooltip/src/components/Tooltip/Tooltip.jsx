@@ -7,13 +7,15 @@ const Tooltip = props => {
     const [visibility, setVisibility] = useState(false);
 
     const display = value => setVisibility(value);
-
+  
+    const tooltipStyle = {animationDuration: props.time + 's'}
+    
   return (
     <div className='Tooltip' onMouseOver={() => display(true)} onMouseOut={() => display(false)}>
         {props.children}
         {
         visibility && 
-        <div className='Message'>{props.tooltip}</div>
+        <div className='Message' style={tooltipStyle}>{props.tooltip}</div>
         }
     </div>
   )

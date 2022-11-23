@@ -6,7 +6,7 @@ function App() {
 
   const text = 'Hello!';
   const tooltip = <div>English</div>;
-  const tooltip_time = 1000;
+  const tooltip_time = 1;
 
   return (
    <Tooltip tooltip={tooltip} time={tooltip_time}>{text}</Tooltip>
