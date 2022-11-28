@@ -13,6 +13,7 @@ const Tooltip = props => {
         console.log('timer start');
       },props.time);
 
+      
       return ()=>{
         clearTimeout(timer);
         setVisibility(false);
