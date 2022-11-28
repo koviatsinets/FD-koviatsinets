@@ -14,6 +14,8 @@ const Tooltip = props => {
       },props.time);
 
 
+
+      
       return ()=>{
         clearTimeout(timer);
         setVisibility(false);
