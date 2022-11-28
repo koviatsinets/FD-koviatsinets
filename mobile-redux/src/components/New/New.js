@@ -1,50 +1,49 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {clientEvents} from '../../events';
 
 import './New.css';
 
-class New extends React.PureComponent {
+const New = props => {
 
-  newSurnameRef = React.createRef();
-  newNameRef = React.createRef();
-  newPatronymRef = React.createRef();
-  newBalanceRef = React.createRef();
+  const newSurnameRef= useRef(null);
+  const newNameRef= useRef(null);
+  const newPatronymRef= useRef(null);
+  const newBalanceRef= useRef(null);
 
-  addNewClient = () => {   
+  const addNewClient = () => {   
     let client = {
-      userSurname: this.newSurnameRef.current.value,
-      userName: this.newNameRef.current.value,
-      userPatronym: this.newPatronymRef.current.value,
-      balance: this.newBalanceRef.current.value,
+      userSurname: newSurnameRef.current.value,
+      userName: newNameRef.current.value,
+      userPatronym: newPatronymRef.current.value,
+      balance: newBalanceRef.current.value,
     };
     clientEvents.emit("EAddClicked", client)
   };
+
+  console.log('render <New></New>')
     
-  render() {
-    console.log('Рендер <New/>')
   	return (
       <div className='New'>
         <p className='Title'>Добавление нового клиента:</p>
         <div>
           <p>Фамилия</p>
-          <input type='text' defaultValue={''} ref={this.newSurnameRef}></input>
+          <input type='text' defaultValue={''} ref={newSurnameRef}></input>
         </div>
         <div>
           <p>Имя</p>
-          <input type='text' defaultValue={''} ref={this.newNameRef}></input>
+          <input type='text' defaultValue={''} ref={newNameRef}></input>
         </div>
         <div>
           <p>Отчество</p>
-          <input type='text' defaultValue={''} ref={this.newPatronymRef}></input>
+          <input type='text' defaultValue={''} ref={newPatronymRef}></input>
         </div>
         <div>
           <p>Баланс</p>
-        	<input type='text' defaultValue={''} ref={this.newBalanceRef}></input>
+        	<input type='text' defaultValue={''} ref={newBalanceRef}></input>
         </div>
-        <button onClick={this.addNewClient}>Добавить</button>
+        <button onClick={addNewClient}>Добавить</button>
       </div>
     )
   }
-}
 
 export default New;

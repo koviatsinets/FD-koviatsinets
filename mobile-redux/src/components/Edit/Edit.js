@@ -1,54 +1,51 @@
-import React from 'react';
-
+import React, { useRef } from 'react';
 import {clientEvents} from '../../events';
 
 import './Edit.css';
 
-class Edit extends React.PureComponent {
 
-  editSurnameRef = React.createRef();
-  editNameRef = React.createRef();
-  editPatronymRef = React.createRef();
-  editBalanceRef = React.createRef();
+const Edit = props => {
 
-  saveEditClient = () => {
-      
-    let client = {
-      id: this.props.id,
-      userSurname: this.editSurnameRef.current.value,
-      userName: this.editNameRef.current.value,
-      userPatronym: this.editPatronymRef.current.value,
-      balance: this.editBalanceRef.current.value,
-    };
+  const editSurnameRef = useRef(null);
+  const editNameRef = useRef(null);
+  const editPatronymRef = useRef(null);
+  const editBalanceRef = useRef(null);
 
-    clientEvents.emit("ESaveEditClicked", client)
+  const saveEditClient = () => {
+      let client = {
+        id: props.id,
+        userSurname: editSurnameRef.current.value,
+        userName: editNameRef.current.value,
+        userPatronym: editPatronymRef.current.value,
+        balance: editBalanceRef.current.value,
+      };
+      clientEvents.emit("ESaveEditClicked", client)
   };
-   
-  render() {
-    console.log('Рендер <Edit/>')
+
+  console.log('render <Edit></Edit>')
+
     return (
       <div className='Edit'>
         <p className='Title'>Редактирование клиента:</p>
           <div>
             <p>Фамилия</p>
-            <input type='text' defaultValue={this.props.userSurname} ref={this.editSurnameRef}></input>
+            <input type='text' defaultValue={props.userSurname} ref={editSurnameRef}></input>
           </div>
           <div>
             <p>Имя</p>
-            <input type='text' defaultValue={this.props.userName} ref={this.editNameRef}></input>
+            <input type='text' defaultValue={props.userName} ref={editNameRef}></input>
           </div>
           <div>
             <p>Отчество</p>
-            <input type='text' defaultValue={this.props.userPatronym} ref={this.editPatronymRef}></input>
+            <input type='text' defaultValue={props.userPatronym} ref={editPatronymRef}></input>
           </div>
           <div>
             <p>Баланс</p>
-            <input type='text' defaultValue={this.props.balance} ref={this.editBalanceRef}></input>
+            <input type='text' defaultValue={props.balance} ref={editBalanceRef}></input>
           </div>
-          <button onClick={this.saveEditClient}>Сохранить</button>
+          <button onClick={saveEditClient}>Сохранить</button>
           </div>
     )
   }
-}
 
-export default Edit;
+export default Edit

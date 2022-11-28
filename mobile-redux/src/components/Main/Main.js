@@ -1,96 +1,99 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import Client from '../Client/Client';
 import New from '../New/New';
 import Edit from '../Edit/Edit';
 
-import {clientEvents} from '../../events';
+import { clientEvents } from '../../events';
 
 import './Main.css';
 
-class Main extends React.PureComponent {
+const Main = props => {
 
-  state = {
-    clients: this.props.clients,
-    isShowActiveClients: true,
-    isShowBlockedClients: true,
-  	isShowNew: false,
-    isShowEdit: false,
-    editClient: null,
+  const [clients, setClients] = useState(props.clients);
+  const [isShowActiveClients, setIsShowActiveClients] = useState(true);
+  const [isShowBlockedClients, setIsShowBlockedClients] = useState(true);
+  const [isShowNew, setIsShowNew] = useState(false);
+  const [isShowEdit, setIsShowEdit] = useState(false);
+  const [editClient, setEditClient] = useState(null);
+
+  useEffect(() => {
+    clientEvents.addListener('EDeleteClicked', deleteClient);
+    clientEvents.addListener('EAddClicked', addClient);
+    clientEvents.addListener('EEditClicked', showEditClientMenu);
+    clientEvents.addListener('ESaveEditClicked', saveEditClient);
+    return () => {
+      clientEvents.removeListener('EDeleteClicked', deleteClient);
+      clientEvents.removeListener('EAddClicked', addClient);
+      clientEvents.removeListener('EEditClicked', showEditClientMenu);
+      clientEvents.removeListener('ESaveEditClicked', saveEditClient);
+  }});
+
+  const showAllClients = () => {
+    setIsShowActiveClients(true)
+    setIsShowBlockedClients(true)
   }
 
-  componentDidMount = () => {
-    clientEvents.addListener('EDeleteClicked', this.deleteClient);
-    clientEvents.addListener('EAddClicked', this.addClient);
-    clientEvents.addListener('EEditClicked', this.showEditClientMenu);
-    clientEvents.addListener('ESaveEditClicked', this.editClient);
-  };
-    
-  componentWillUnmount = () => {
-  	clientEvents.removeListener('EDeleteClicked', this.deleteClient);
-    clientEvents.removeListener('EAddClicked', this.addClient);
-    clientEvents.removeListener('EEditClicked', this.showEditClientMenu);
-    clientEvents.removeListener('ESaveEditClicked', this.editClient);
-  };
-
-  setIsShowActiveClients = () => {
-    this.setState({isShowActiveClients: false, isShowBlockedClients: true});
+  const showActiveClients = () => {
+    setIsShowActiveClients(false)
+    setIsShowBlockedClients(true)
   }
 
-  setIsShowBlockedClients = () => {
-    this.setState({isShowActiveClients: true, isShowBlockedClients: false});
+  const showBlockedClients = () => {
+    setIsShowActiveClients(true)
+    setIsShowBlockedClients(false)
   }
 
-  setIsShowAllClients = () => {
-    this.setState({isShowActiveClients: true, isShowBlockedClients: true});
-  }
-
-  filterClients = () => {
-    var res = this.state.clients;
-    if (!this.state.isShowActiveClients) {
+ const filterClients = () => {
+    var res = clients;
+    if (!isShowActiveClients) {
       res = res.filter(el => el.balance > 0)
     }
-    if (!this.state.isShowBlockedClients) {
+    if (!isShowBlockedClients) {
       res = res.filter(el => el.balance < 0)
     }
+    
     res = res.map(el => 
       <Client key={el.id} client={el}></Client>
     )
     return res;
   }
 
-  deleteClient = (id) => {
-    this.setState({clients: this.state.clients.filter(el => el.id !== id)})
+  const deleteClient = (id) => {
+    setClients(clients.filter(el => el.id !== id))
   }
 
-  showAddClientMenu = () => {
-    this.setState({isShowNew: !this.state.isShowNew})
+  const showAddClientMenu = () => {
+    setIsShowNew(!isShowNew)
   }
 
-  addClient = (obj) => {
-  	var maxId = this.state.clients.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id;
+  const addClient = (obj) => {
+  	var maxId = clients.length !== 0? clients.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id : 0;
     var newObj = {...obj, id: maxId + 1}
-    var newArr = [...this.state.clients, newObj];
-    this.setState({clients: newArr, isShowNew: false});
+    var newArr = [...clients, newObj];
+    setClients(newArr)
+    setIsShowNew(false)
   }
 
-  showEditClientMenu = (obj) => {
-    this.setState({isShowEdit: true, editClient: obj})
+  const showEditClientMenu = (obj) => {
+    setIsShowEdit(!isShowEdit)
+    setEditClient(obj)
   }
 
-  editClient = (obj) => {
-    var newArr = [...this.state.clients].map(el => obj.id === el.id ? obj : el);
-    this.setState({clients: newArr, isShowEdit: false})
+  const saveEditClient = (obj) => {
+    var newArr = [...clients].map(el => obj.id === el.id ? obj : el);
+    setClients(newArr)
+    setIsShowEdit(false)
   }
 
-  render() {
-    console.log('Рендер <Main/>')
+  console.log('Рендер <Main/>')
+
     return (
       <div className='Main'>
         <div>
-          <button onClick={this.setIsShowAllClients}>Все</button>
-          <button onClick={this.setIsShowActiveClients}>Активные</button>
-          <button onClick={this.setIsShowBlockedClients}>Заблокированные</button>
+          <button onClick={showAllClients}>Все</button>
+          <button onClick={showActiveClients}>Активные</button>
+          <button onClick={showBlockedClients}>Заблокированные</button>
         </div>
         <table>
         	<thead>
@@ -105,22 +108,22 @@ class Main extends React.PureComponent {
 						</tr>
 					</thead>
         	<tbody>
-          {this.filterClients()}
+          {filterClients()}
         	</tbody>
         </table>
-        <button onClick={this.showAddClientMenu}>Добавить клиента</button>
+        <button onClick={showAddClientMenu}>Добавить клиента</button>
         {
-					this.state.isShowEdit &&
-					<Edit id={this.state.editClient.id} userSurname={this.state.editClient.userSurname}
-					userName={this.state.editClient.userName} userPatronym={this.state.editClient.userPatronym}
-					balance={this.state.editClient.balance}></Edit>
+					isShowEdit &&
+					<Edit id={editClient.id} userSurname={editClient.userSurname}
+					userName={editClient.userName} userPatronym={editClient.userPatronym}
+					balance={editClient.balance}></Edit>
         }
         {
-        	this.state.isShowNew && <New></New>
+        	isShowNew && <New></New>
         }
       </div>
     )
   }
-}
+
 
 export default Main;

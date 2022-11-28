@@ -1,42 +1,41 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {clientEvents} from '../../events';
 
 import './Client.css';
 
-class Client extends React.PureComponent {
+const Client = props => {
 
-  deleteClient = () => {
-    clientEvents.emit("EDeleteClicked", this.props.client.id)
+  const deleteClient = () => {
+    clientEvents.emit("EDeleteClicked", props.client.id)
   }
 
-  editClient = () => {
-    clientEvents.emit("EEditClicked", this.props.client)
+  const editClient = () => {
+    clientEvents.emit("EEditClicked", props.client)
   }
 
-  render() {
     console.log('Рендер <Client/>')
+    
   	return (
       <tr className='Client'>
-        <td>{this.props.client.userSurname}</td>
-        <td>{this.props.client.userName}</td>
-        <td>{this.props.client.userPatronym}</td>
-        <td>{this.props.client.balance}</td>
+        <td>{props.client.userSurname}</td>
+        <td>{props.client.userName}</td>
+        <td>{props.client.userPatronym}</td>
+        <td>{props.client.balance}</td>
         {
-          this.props.client.balance > 0
+          props.client.balance > 0
           ?
           <td className='active'>active</td>
           :
           <td className='blocked'>blocked</td>
         }
         <td>
-          <button onClick={this.editClient}>Редактировать</button>
+          <button onClick={editClient}>Редактировать</button>
         </td>
         <td>
-          <button onClick={this.deleteClient}>Удалить</button>
+          <button onClick={deleteClient}>Удалить</button>
         </td>
       </tr>
     )
   }
-}
 
 export default Client;
