@@ -1,0 +1,13 @@
+.Client .active {
+    background-color: green;
+    text-align: center;
+}
+
+.Client .blocked {
+    background-color: rgb(225, 0, 0);
+    text-align: center;
+}
+
+.Client td {
+    text-align: left;
+} 

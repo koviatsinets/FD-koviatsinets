@@ -1,0 +1,31 @@
+.Edit {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    border: solid lightgrey 1px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.Edit .Title {
+    font-size: 20px;
+    width: auto;
+    margin: 0 0 10px 0;
+}
+
+.Edit div {
+    display: flex;
+}
+
+.Edit p {
+    width: 70px;
+}
+
+.Edit * {
+    margin: 0;
+    padding: 0;
+}
+
+.Edit button {
+    margin-top: 10px;
+}

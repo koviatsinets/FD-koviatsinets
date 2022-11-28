@@ -1,0 +1,6 @@
+[
+    {"id": 1, "userSurname": "Иванов", "userName": "Иван",  "userPatronym": "Иванович", "balance": 200},
+    {"id": 2, "userSurname": "Сидоров", "userName": "Сидор",  "userPatronym": "Сидорович", "balance": 250},
+    {"id": 3, "userSurname": "Петров", "userName": "Петр",  "userPatronym": "Петрович", "balance": 180},
+    {"id": 4, "userSurname": "Григорьев", "userName": "Григорий",  "userPatronym": "Григорьевич", "balance": -220}
+]

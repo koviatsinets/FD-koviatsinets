@@ -7,13 +7,11 @@ const Tooltip = props => {
     const [visibility, setVisibility] = useState(false);
     const [hover, setHover] = useState(false);
 
-    const display = value => setHover(value);
-
     useEffect(() => {
       const timer=setTimeout(()=>{
         setVisibility(true);
         console.log('timer start');
-      },1000);
+      },props.time);
 
       return ()=>{
         clearTimeout(timer);
@@ -23,7 +21,7 @@ const Tooltip = props => {
     }, [hover])
     
   return (
-    <div className='Tooltip' onMouseOver={() => display(true)} onMouseOut={() => display(false)}>
+    <div className='Tooltip' onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
         {props.children}
         {
         (visibility && hover) && 
