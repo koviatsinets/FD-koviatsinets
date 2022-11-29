@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Client from '../Client/Client';
 import New from '../New/New';
 import Edit from '../Edit/Edit';
 
 import { clientEvents } from '../../events';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Main.css';
 
 const Main = props => {
 
-  const [clients, setClients] = useState(props.clients);
+  const dispatch = useDispatch();
+  const clients = useSelector( state => state.clients );
+
   const [isShowActiveClients, setIsShowActiveClients] = useState(true);
   const [isShowBlockedClients, setIsShowBlockedClients] = useState(true);
   const [isShowNew, setIsShowNew] = useState(false);
@@ -52,27 +55,31 @@ const Main = props => {
     if (!isShowBlockedClients) {
       res = res.filter(el => el.balance < 0)
     }
-    
     res = res.map(el => 
       <Client key={el.id} client={el}></Client>
     )
     return res;
   }
 
+  // const memoizedValue = useMemo(
+  //   () => clients.map(el => 
+  //     <Client key={el.id} client={el}></Client>),
+  //   [clients]
+  // );
+
   const deleteClient = (id) => {
-    setClients(clients.filter(el => el.id !== id))
+    dispatch( {
+      type: "delete_client",
+      clientId: id, // we can pass some additional information
+    } );
   }
 
-  const showAddClientMenu = () => {
-    setIsShowNew(!isShowNew)
-  }
-
-  const addClient = (obj) => {
-  	var maxId = clients.length !== 0? clients.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id : 0;
-    var newObj = {...obj, id: maxId + 1}
-    var newArr = [...clients, newObj];
-    setClients(newArr)
-    setIsShowNew(false)
+  const saveEditClient = (obj) => {
+    setIsShowEdit(false)
+    dispatch( {
+      type: "edit_client",
+      clientInfo: obj, // we can pass some additional information
+    } );
   }
 
   const showEditClientMenu = (obj) => {
@@ -80,10 +87,16 @@ const Main = props => {
     setEditClient(obj)
   }
 
-  const saveEditClient = (obj) => {
-    var newArr = [...clients].map(el => obj.id === el.id ? obj : el);
-    setClients(newArr)
-    setIsShowEdit(false)
+  const showAddClientMenu = () => {
+    setIsShowNew(!isShowNew)
+  }
+
+  const addClient = (obj) => {
+    setIsShowNew(false)
+    dispatch( {
+      type: "add_client",
+      clientAddInfo: obj, // we can pass some additional information
+    } );
   }
 
   console.log('Рендер <Main/>')
@@ -124,6 +137,5 @@ const Main = props => {
       </div>
     )
   }
-
 
 export default Main;
