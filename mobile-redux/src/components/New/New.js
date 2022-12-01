@@ -20,7 +20,7 @@ const New = props => {
     clientEvents.emit("EAddClicked", client)
   };
 
-  console.log('render <New></New>')
+  console.log('render <New/>')
     
   	return (
       <div className='New'>

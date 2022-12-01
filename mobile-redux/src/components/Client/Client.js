@@ -2,8 +2,7 @@ import React from 'react';
 import {clientEvents} from '../../events';
 
 import './Client.css';
-
-const Client = props => {
+const Client = React.memo(function Client(props) {
 
   const deleteClient = () => {
     clientEvents.emit("EDeleteClicked", props.client.id)
@@ -36,6 +35,6 @@ const Client = props => {
         </td>
       </tr>
     )
-  }
+  });
 
 export default Client;

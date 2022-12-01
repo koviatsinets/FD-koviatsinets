@@ -22,7 +22,7 @@ const Edit = props => {
       clientEvents.emit("ESaveEditClicked", client)
   };
 
-  console.log('render <Edit></Edit>')
+  console.log('render <Edit/>')
 
     return (
       <div className='Edit'>
