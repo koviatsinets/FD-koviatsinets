@@ -8,11 +8,13 @@ import { clientEvents } from '../../events';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Main.css';
+import { clientAdd, clientDelete, clientEdit } from '../../redux/clientsSlice';
 
-const Main = props => {
+const Main = () => {
 
   const dispatch = useDispatch();
-  const clients = useSelector( state => state.clients );
+
+  const mobile = useSelector( state => state.mobile );
 
   const [isShowActiveClients, setIsShowActiveClients] = useState(true);
   const [isShowBlockedClients, setIsShowBlockedClients] = useState(true);
@@ -48,7 +50,7 @@ const Main = props => {
   }
 
  const filterClients = () => {
-    var res = clients;
+    var res = mobile.clients;
     if (!isShowActiveClients) {
       res = res.filter(el => el.balance > 0)
     }
@@ -61,25 +63,13 @@ const Main = props => {
     return res;
   }
 
-  // const memoizedValue = useMemo(
-  //   () => clients.map(el => 
-  //     <Client key={el.id} client={el}></Client>),
-  //   [clients]
-  // );
-
   const deleteClient = (id) => {
-    dispatch( {
-      type: "delete_client",
-      clientId: id, // we can pass some additional information
-    } );
+    dispatch( clientDelete(id) );
   }
 
   const saveEditClient = (obj) => {
     setIsShowEdit(false)
-    dispatch( {
-      type: "edit_client",
-      clientInfo: obj, // we can pass some additional information
-    } );
+    dispatch( clientEdit(obj) );
   }
 
   const showEditClientMenu = (obj) => {
@@ -93,10 +83,7 @@ const Main = props => {
 
   const addClient = (obj) => {
     setIsShowNew(false)
-    dispatch( {
-      type: "add_client",
-      clientAddInfo: obj, // we can pass some additional information
-    } );
+    dispatch( clientAdd(obj) );
   }
 
   console.log('Рендер <Main/>')

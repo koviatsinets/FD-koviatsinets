@@ -2,20 +2,16 @@ import React from 'react';
 import Main from './components/Main/Main';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import clientsReducer from './redux/clientsReducer';
+import { store } from './redux/store'
 
 import './App.css';
 
-import clientsArr from './clients.json';
-
-
-const store=createStore(clientsReducer);
+// import clientsArr from './clients.json';
 
 function App() {
     return (
       <Provider store={store}>
-         <Main clients={clientsArr}></Main>
+         <Main></Main>
       </Provider>
     )
    
