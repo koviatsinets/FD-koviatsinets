@@ -1,5 +1,5 @@
 import React from 'react';
-import {clientEvents} from '../../events';
+import { clientEvents } from '../../events';
 
 import './Client.css';
 const Client = React.memo(function Client(props) {

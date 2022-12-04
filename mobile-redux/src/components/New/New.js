@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import {clientEvents} from '../../events';
+import { clientEvents } from '../../events';
 
 import './New.css';
 
